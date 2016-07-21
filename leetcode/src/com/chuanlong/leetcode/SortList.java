@@ -3,7 +3,7 @@ package com.chuanlong.leetcode;
 public class SortList {
 
 	/**
-	 * @param args
+	 * https://leetcode.com/problems/sort-list/
 	 */
 	public static void main(String[] args) {
 

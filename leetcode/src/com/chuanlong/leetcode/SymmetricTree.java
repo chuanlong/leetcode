@@ -5,7 +5,7 @@ import java.util.Stack;
 public class SymmetricTree {
 
 	/**
-	 * @param args
+	 * https://leetcode.com/problems/symmetric-tree/
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

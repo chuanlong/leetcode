@@ -9,8 +9,7 @@ public class NimGame {
 		
 		NimGame nimGame = new NimGame();
 		
-		boolean isWin = nimGame.canWinNim(1348820612);
-		System.out.println("1348820612 isWin:" + isWin);
+		System.out.println("1348820612 isWin:" + nimGame.canWinNim(1348820612));
 	}
 	
 	

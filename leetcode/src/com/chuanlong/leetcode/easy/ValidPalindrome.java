@@ -1,4 +1,4 @@
-package com.chuanlong.leetcode;
+package com.chuanlong.leetcode.easy;
 
 public class ValidPalindrome {
 

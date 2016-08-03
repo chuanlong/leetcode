@@ -17,30 +17,42 @@ public class H282_ExpressionAddOperators {
 //		System.out.println("105, 5 -> [1*0+5, 10-5], result:" + List2String(obj.addOperators("105", 5)));
 //		System.out.println("00, 0 -> [0+0, 0-0, 0*0], result:" + List2String(obj.addOperators("00", 0)));
 //		System.out.println("3456237490, 9191 -> [], result:" + List2String(obj.addOperators("3456237490", 9191)));
-		System.out.println("45623, 9123 -> [], result:" + List2String(obj.addOperators("45623", 9123)));
+		
+//		System.out.println("45623, 9123 -> [], result:" + List2String(obj.addOperators("45623", 9123)));
+		System.out.println("56789, 35 -> [], result:" + List2String(obj.addOperators("56789", 35)));
+		
 
 	}
 	
 	
     public List<String> addOperators(String num, int target) {
         List<Integer> x = new ArrayList<Integer>();
-        for(int i=0; i<num.length(); i++){
-        	x.add(num.charAt(i)-'0');
+        List<Boolean> y = new ArrayList<Boolean>();
+        if(num != null){
+            for(int i=0; i<num.length(); i++){
+            	x.add(num.charAt(i)-'0');
+            	y.add(true);
+            }
         }
-        return calculate(x, target);
+        return calculate(x, y, target);
     }
 
     
-    public List<String> calculate(List<Integer> x, int target) {
+    public List<String> calculate(List<Integer> x, List<Boolean> y, int target) {
         List<String> a = new ArrayList<String>();
         
-        if(x.size() == 1){
+        if(x == null || x.size() == 0){
+        	//
+        }else if(x.size() == 1){
         	if(x.get(0) == target){
         		a.add(x+"");
         	}
         }else if(x.size() == 2){
         	int x1 = x.get(0);
         	int x2 = x.get(1);
+        	
+        	boolean y1 = y.get(0);
+        	boolean y2 = y.get(1);
         	
         	if(x1-x2 == target){
         		a.add(x1+"-"+x2);
@@ -51,40 +63,51 @@ public class H282_ExpressionAddOperators {
         	if(x1*x2 == target){
         		a.add(x1+"*"+x2);
         	}
-        	if(x1 != 0 && x1*10+x2 == target){
+        	if(x1 != 0 && y1 && y2 && x1*10+x2 == target){
         		a.add(x1+""+x2);
         	}
         }else{
         	int x1 = x.get(0);
         	int x2 = x.get(1);
+        	
+        	boolean y1 = y.get(0);
+        	boolean y2 = y.get(1);
                     
-            List<String> a1 = calculate(SubList(x, 1, x.size()), x1-target);
+            List<String> a1 = calculate(SubList1(x, 1, x.size()), SubList2(y, 1, y.size()), x1-target);
             if(a1.size() > 0){
             	for(int i=0; i<a1.size(); i++){
             		a.add(x1 + "-" + a1.get(i));
             	}
             }            
             
-            List<String> a2 = calculate(SubList(x, 1, x.size()), target-x1);
+            List<String> a2 = calculate(SubList1(x, 1, x.size()), SubList2(y, 1, y.size()), target-x1);
             if(a2.size() > 0){
             	for(int i=0; i<a2.size(); i++){
             		a.add(x1 + "+" + a2.get(i));
             	}
             }
                         
-            List<Integer> subX1 = SubList(x, 2, x.size());
-            subX1.add(0, x1*x2);
-            List<String> a3 = calculate(subX1, target);
+            List<Integer> subX3 = SubList1(x, 2, x.size());
+            subX3.add(0, x1*x2);
+
+            List<Boolean> subY3 = SubList2(y, 2, y.size());
+            subY3.add(0, false);
+            
+            List<String> a3 = calculate(subX3, subY3, target);
             if(a3.size() > 0){
             	for(int i=0; i<a3.size(); i++){
             		a.add(x1+"*"+x2+a3.get(i).substring(((x1*x2)+"").length()));
             	}
             }
             
-            if(x1 != 0){
-                List<Integer> subX2 = SubList(x, 2, x.size());
-                subX2.add(0, x1*10+x2);
-                List<String> a4 = calculate(subX2, target);
+            if(x1 != 0 && y1 && y2){
+                List<Integer> subX4 = SubList1(x, 2, x.size());
+                subX4.add(0, x1*10+x2);
+                
+                List<Boolean> subY4 = SubList2(y, 2, y.size());
+                subY4.add(0, true);
+                
+                List<String> a4 = calculate(subX4, subY4, target);
                 if(a4.size() > 0){
                 	for(int i=0; i<a4.size(); i++){
                 		a.add(x1+""+x2+a4.get(i).substring(((x1*10+x2)+"").length()));
@@ -97,8 +120,16 @@ public class H282_ExpressionAddOperators {
         return a;    	
     }
     
-    public static List<Integer> SubList(List<Integer> a, int fromIndex, int toIndex){
+    public static List<Integer> SubList1(List<Integer> a, int fromIndex, int toIndex){
     	List<Integer> x = new ArrayList<Integer>();
+    	for(int i=fromIndex; i<toIndex&&i<a.size(); i++){
+    		x.add(a.get(i));
+    	}
+    	return x;
+    }
+    
+    public static List<Boolean> SubList2(List<Boolean> a, int fromIndex, int toIndex){
+    	List<Boolean> x = new ArrayList<Boolean>();
     	for(int i=fromIndex; i<toIndex&&i<a.size(); i++){
     		x.add(a.get(i));
     	}

@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.medium;
 
+import com.chuanlong.leetcode.util.Util;
+
 public class CountingBits {
 
 	/**
@@ -9,7 +11,7 @@ public class CountingBits {
 		
 		CountingBits obj = new CountingBits();
 		
-		System.out.println("num=5, result:" + arrayToString(obj.countBits(5)));
+		System.out.println("num=5, result:" + Util.Array2String(obj.countBits(5)));
 	}
 	
 	
@@ -27,22 +29,6 @@ public class CountingBits {
         }
         
         return a;
-    }
-
-    private static String arrayToString(int[] a){
-    	if(a == null){
-    		return "";
-    	}
-    	String str = "[";
-    	for(int i=0; i<a.length; i++){
-    		str += a[i] + ",";
-    	}
-    	if(a.length > 0){
-    		str = str.substring(0, str.length()-1);
-    	}
-    	
-    	str += "]";
-    	return str;
     }
     
 }

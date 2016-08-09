@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+import com.chuanlong.leetcode.bean.ListNode;
+
 public class E237_DeleteNodeInALinkedList {
 
 	/**
@@ -17,12 +19,6 @@ public class E237_DeleteNodeInALinkedList {
     	ListNode next = node.next;
     	node.val = next.val;
     	node.next = next.next;
-    }
-    
-    class ListNode {
-    	 int val;
-    	 ListNode next;
-    	 ListNode(int x) { val = x; }
     }
 
 }

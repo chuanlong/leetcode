@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.medium;
 
+import com.chuanlong.leetcode.bean.ListNode;
+
 public class SortList {
 
 	/**
@@ -91,16 +93,6 @@ public class SortList {
 		l0.next = l1;
 		
 		return l3;
-	}
-	
-	
-	public class ListNode{
-		int val;
-		ListNode next;
-		ListNode(int x){
-			val = x;
-			next = null;
-		}
 	}
 
 }

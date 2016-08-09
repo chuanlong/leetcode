@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+import com.chuanlong.leetcode.bean.TreeNode;
+
 public class SameTree {
 
 	/**
@@ -7,11 +9,8 @@ public class SameTree {
 	 */
 	public static void main(String[] args) {
 
-
-
 	}
 
-	
 	public boolean isSameTree(TreeNode p, TreeNode q) {
 		if (p == null && q == null)
 			return true;
@@ -28,16 +27,6 @@ public class SameTree {
 		}
 
 		return false;
-	}
-	
-	
-	
-	public class TreeNode
-	{
-		int val;
-		TreeNode left;
-		TreeNode right;
-		TreeNode(int x) {val = x;}
 	}
 	
 }

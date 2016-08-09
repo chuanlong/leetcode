@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+import com.chuanlong.leetcode.bean.TreeNode;
+
 public class E226_InvertBinaryTree {
 
 	/**
@@ -21,14 +23,6 @@ public class E226_InvertBinaryTree {
     	root.right = leftNode;
         
     	return root;
-    }
-    
-    // Definition for a binary tree node.
-    public class TreeNode {
-         int val;
-         TreeNode left;
-         TreeNode right;
-         TreeNode(int x) { val = x; }
     }
 
 }

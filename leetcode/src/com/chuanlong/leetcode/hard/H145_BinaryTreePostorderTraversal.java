@@ -86,7 +86,12 @@ public class H145_BinaryTreePostorderTraversal {
     				orders.add(parent.val);
     				size--;
     				child = parent;
-    			}
+    			}else{
+        			// exception
+    				orders.add(parent.val);
+    				size--;
+    				child = parent;
+        		}
     		}
     		
     	}

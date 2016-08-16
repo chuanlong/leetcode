@@ -29,7 +29,7 @@ public class M179_LargestNumber {
         
         for(int i=0; i<nums.length; i++){
         	for(int j=i+1; j<nums.length; j++){
-        		if(!compare(nums[i], nums[j])){
+        		if(!compare1(nums[i], nums[j])){
         			int t = nums[i];
         			nums[i] = nums[j];
         			nums[j] = t;
@@ -49,7 +49,29 @@ public class M179_LargestNumber {
     	return token;
     }
     
-    
+    /**
+     * true  x is before y, x is larger than y
+     * false x is after  y, x is smaller or equal than y 
+     * */
+    public boolean compare1(int x, int y){
+    	String xx = x + "" + y;
+    	String yy = y + "" + x;
+    	
+    	for(int i=0; i<xx.length(); i++){
+        	int x1 = Integer.parseInt(xx.substring(i, i+1));
+        	int y1 = Integer.parseInt(yy.substring(i, i+1));
+    		
+    		if(x1 > y1){
+    			return true;
+    		}else if(x1 < y1){
+    			return false;
+    		}else{
+    			// x1 equal y1
+    		}
+    	}
+    	
+    	return false;
+    }
     
     /**
      * true  x is before y, x is larger than y

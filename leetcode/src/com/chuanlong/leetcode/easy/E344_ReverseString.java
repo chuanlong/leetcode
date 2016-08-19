@@ -1,6 +1,6 @@
 package com.chuanlong.leetcode.easy;
 
-public class ReverseString {
+public class E344_ReverseString {
 
 	/**
 	 * https://leetcode.com/problems/reverse-string/

@@ -1,18 +1,18 @@
 package com.chuanlong.leetcode.easy;
 
-public class ValidPalindrome {
+public class E125_ValidPalindrome {
 
 	/**
 	 * https://oj.leetcode.com/problems/valid-palindrome/
 	 */
 	public static void main(String[] args) {
 		
-		ValidPalindrome instance = new ValidPalindrome();
-		
-		boolean b1 = instance.isPalindrome("A man, a plan, a canal: Panama"); //true
-		boolean b2 = instance.isPalindrome("race a car"); //false
-		boolean b3 = instance.isPalindrome(" "); //false;
-		boolean b4 = instance.isPalindrome("1a2"); //false;
+//		ValidPalindrome obj = new ValidPalindrome();
+//		
+//		boolean b1 = obj.isPalindrome("A man, a plan, a canal: Panama"); //true
+//		boolean b2 = obj.isPalindrome("race a car"); //false
+//		boolean b3 = obj.isPalindrome(" "); //false;
+//		boolean b4 = obj.isPalindrome("1a2"); //false;
 	}
 	
 	

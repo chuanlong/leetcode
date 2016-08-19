@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class NumberOf1Bits {
+public class E191_NumberOf1Bits {
 
 	/**
 	 * https://leetcode.com/problems/number-of-1-bits/
 	 */
 	public static void main(String[] args) {
 
-		NumberOf1Bits obj = new NumberOf1Bits();
+		E191_NumberOf1Bits obj = new E191_NumberOf1Bits();
 		
 		System.out.println("2147483648, expected:1, result:" + obj.hammingWeight(0x80000000));
 		System.out.println("4294967295, expected:32, result:" + obj.hammingWeight(0xFFFFFFFF));

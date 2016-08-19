@@ -20,7 +20,7 @@ public class M318_MaximumProductOfWordLengths {
     public int maxProduct(String[] words) {
     	quickSort(words);
 
-    	int maxI = words.length;
+//    	int maxI = words.length;
     	int maxJ = words.length;
     	int max = 0;
     	for(int i=0; i<words.length; i++){
@@ -28,7 +28,7 @@ public class M318_MaximumProductOfWordLengths {
     			if(!isShare(words[i], words[j]) 
     					&& words[i].length() * words[j].length() > max){
     				max = words[i].length() * words[j].length();
-    				maxI = i;
+//    				maxI = i;
     				maxJ = j;
     			}
     		}

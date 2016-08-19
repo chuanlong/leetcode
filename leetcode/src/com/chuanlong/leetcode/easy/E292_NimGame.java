@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class NimGame {
+public class E292_NimGame {
 
 	/**
 	 * https://leetcode.com/problems/nim-game/
 	 */
 	public static void main(String[] args) {
 		
-		NimGame nimGame = new NimGame();
+		E292_NimGame nimGame = new E292_NimGame();
 		
 		System.out.println("1348820612 isWin:" + nimGame.canWinNim(1348820612));
 	}

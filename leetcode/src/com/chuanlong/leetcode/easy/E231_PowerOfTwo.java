@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class PowerOfTwo {
+public class E231_PowerOfTwo {
 
 	/**
 	 * https://leetcode.com/problems/power-of-two/
 	 */
 	public static void main(String[] args) {
 		
-		PowerOfTwo obj = new PowerOfTwo();
+		E231_PowerOfTwo obj = new E231_PowerOfTwo();
 
 		System.out.println("1 expected:true, result:" + obj.isPowerOfTwo(1));
 		System.out.println("2 expected:true, result:" + obj.isPowerOfTwo(2));

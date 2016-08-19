@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.medium;
 
-public class WiggleSubsequence {
+public class M376_WiggleSubsequence {
 
 	/**
 	 * https://leetcode.com/problems/wiggle-subsequence/
 	 */
 	public static void main(String[] args) {
 		
-		WiggleSubsequence obj = new WiggleSubsequence();
+		M376_WiggleSubsequence obj = new M376_WiggleSubsequence();
 		
 		System.out.println("[1,7,4,9,2,5], right:6, result:" 
 				+ obj.wiggleMaxLength(new int[]{1,7,4,9,2,5}));

@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class ValidAnagram {
+public class E242_ValidAnagram {
 
 	/**
 	 * https://leetcode.com/problems/valid-anagram/
 	 */
 	public static void main(String[] args) {
 
-		ValidAnagram obj = new ValidAnagram();
+		E242_ValidAnagram obj = new E242_ValidAnagram();
 		
 		System.out.println("[anagram, nagaram], expect:true, result:" + obj.isAnagram("anagram", "nagaram"));
 		System.out.println("[rat, car], expect:false, result:" + obj.isAnagram("rat", "car"));

@@ -2,7 +2,7 @@ package com.chuanlong.leetcode.easy;
 
 import java.util.Stack;
 
-public class SymmetricTree {
+public class E101_SymmetricTree {
 
 	/**
 	 * https://leetcode.com/problems/symmetric-tree/

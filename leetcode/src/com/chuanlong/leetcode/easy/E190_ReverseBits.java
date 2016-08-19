@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class ReverseBits {
+public class E190_ReverseBits {
 
 	/**
 	 * https://leetcode.com/problems/reverse-bits/
 	 */
 	public static void main(String[] args) {
 
-		ReverseBits obj = new ReverseBits();		
+		E190_ReverseBits obj = new E190_ReverseBits();		
 		
 		System.out.println("43261596, expected:964176192, result:" + obj.reverseBits(43261596));
 		

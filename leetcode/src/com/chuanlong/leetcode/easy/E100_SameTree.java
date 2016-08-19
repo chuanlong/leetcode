@@ -2,7 +2,7 @@ package com.chuanlong.leetcode.easy;
 
 import com.chuanlong.leetcode.bean.TreeNode;
 
-public class SameTree {
+public class E100_SameTree {
 
 	/**
 	 * https://oj.leetcode.com/problems/same-tree/

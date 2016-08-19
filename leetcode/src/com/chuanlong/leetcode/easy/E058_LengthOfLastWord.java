@@ -1,20 +1,20 @@
 package com.chuanlong.leetcode.easy;
 
-public class LengthOfLastWord {
+public class E058_LengthOfLastWord {
 
 	/**
 	 * https://oj.leetcode.com/problems/length-of-last-word/
 	 */
 	public static void main(String[] args) {
 
-		LengthOfLastWord instance = new LengthOfLastWord();
-				
-		int len1 = instance.lengthOfLastWord("Hello World"); //5
-		int len2 = instance.lengthOfLastWord(null); //0
-		int len3 = instance.lengthOfLastWord(""); //0
-		int len4 = instance.lengthOfLastWord(" "); //0
-		int len5 = instance.lengthOfLastWord("sss sdddQ "); //5
-		int len6 = instance.lengthOfLastWord("sss sdddQ ADFWEf"); //6
+//		E058_LengthOfLastWord obj = new E058_LengthOfLastWord();
+//				
+//		int len1 = obj.lengthOfLastWord("Hello World"); //5
+//		int len2 = obj.lengthOfLastWord(null); //0
+//		int len3 = obj.lengthOfLastWord(""); //0
+//		int len4 = obj.lengthOfLastWord(" "); //0
+//		int len5 = obj.lengthOfLastWord("sss sdddQ "); //5
+//		int len6 = obj.lengthOfLastWord("sss sdddQ ADFWEf"); //6
 		
 				
 	}

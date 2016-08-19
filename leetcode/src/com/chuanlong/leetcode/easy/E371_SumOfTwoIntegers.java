@@ -1,13 +1,13 @@
 package com.chuanlong.leetcode.easy;
 
-public class SumOfTwoIntegers {
+public class E371_SumOfTwoIntegers {
 
 	/**
 	 * https://leetcode.com/problems/sum-of-two-integers/
 	 */
 	public static void main(String[] args) {
 
-		SumOfTwoIntegers obj = new SumOfTwoIntegers();
+		E371_SumOfTwoIntegers obj = new E371_SumOfTwoIntegers();
 		
 		System.out.println("1+2:" + obj.getSum(1, 2));
 		System.out.println("1+0:" + obj.getSum(1, 0));

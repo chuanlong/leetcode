@@ -1,21 +1,21 @@
 package com.chuanlong.leetcode.easy;
 
-public class ValidSudoku {
+public class E036_ValidSudoku {
 
 	/**
 	 * https://oj.leetcode.com/problems/valid-sudoku/
 	 */
 	public static void main(String[] args) {
 
-		char[][] board = { ".87654321".toCharArray(),
-				"2........".toCharArray(), "3........".toCharArray(),
-				"4........".toCharArray(), "5........".toCharArray(),
-				"6........".toCharArray(), "7........".toCharArray(),
-				"8........".toCharArray(), "9........".toCharArray() };
-
-		ValidSudoku instance = new ValidSudoku();
-
-		boolean b1 = instance.isValidSudoku(board);
+//		char[][] board = { ".87654321".toCharArray(),
+//				"2........".toCharArray(), "3........".toCharArray(),
+//				"4........".toCharArray(), "5........".toCharArray(),
+//				"6........".toCharArray(), "7........".toCharArray(),
+//				"8........".toCharArray(), "9........".toCharArray() };
+//
+//		ValidSudoku obj = new ValidSudoku();
+//
+//		boolean b1 = obj.isValidSudoku(board);
 
 	}
 

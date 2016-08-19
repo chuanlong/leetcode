@@ -2,14 +2,14 @@ package com.chuanlong.leetcode.medium;
 
 import com.chuanlong.leetcode.util.Util;
 
-public class CountingBits {
+public class M338_CountingBits {
 
 	/**
 	 * https://leetcode.com/problems/counting-bits/
 	 */
 	public static void main(String[] args) {
 		
-		CountingBits obj = new CountingBits();
+		M338_CountingBits obj = new M338_CountingBits();
 		
 		System.out.println("num=5, result:" + Util.Array2String(obj.countBits(5)));
 	}

@@ -2,18 +2,18 @@ package com.chuanlong.leetcode.medium;
 
 import com.chuanlong.leetcode.bean.ListNode;
 
-public class SortList {
+public class M148_SortList {
 
 	/**
 	 * https://leetcode.com/problems/sort-list/
 	 */
 	public static void main(String[] args) {
 
-		SortList instance = new SortList();
-		
-		ListNode l = instance.getList();
-		ListNode l1 = instance.sortList(l);	// 0,1,2,3,4,5
-		ListNode l2 = instance.sortList(null); // null;				
+//		SortList obj = new SortList();
+//		
+//		ListNode l = obj.getList();
+//		ListNode l1 = obj.sortList(l);	// 0,1,2,3,4,5
+//		ListNode l2 = obj.sortList(null); // null;				
 
 	}
 	

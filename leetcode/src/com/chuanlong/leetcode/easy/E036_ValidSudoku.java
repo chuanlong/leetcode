@@ -13,7 +13,7 @@ public class E036_ValidSudoku {
 //				"6........".toCharArray(), "7........".toCharArray(),
 //				"8........".toCharArray(), "9........".toCharArray() };
 //
-//		ValidSudoku obj = new ValidSudoku();
+//		E036_ValidSudoku obj = new E036_ValidSudoku();
 //
 //		boolean b1 = obj.isValidSudoku(board);
 

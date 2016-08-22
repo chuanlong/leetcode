@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.util;
 
+import com.chuanlong.leetcode.bean.ListNode;
+
 public class Util {
 
 	/**
@@ -24,6 +26,19 @@ public class Util {
     	
     	str += "]";
     	return str;
+    }
+    
+    public static String ListNode2String(ListNode node){
+    	if(node == null){
+    		return "";
+    	}
+    	String str = "[";
+    	for(ListNode n = node; n != null; n=n.next){
+    		str += n.val + ",";
+    	}
+    	str = str.substring(0, str.length()-1);
+    	str += "]";
+    	return str;    	
     }
 	
 }

@@ -8,7 +8,12 @@ public class Util {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		
+		int[] nums = new int[]{3,2,5,2,1,5,8,2,7,4};
+		System.out.print(Array2String(nums) + " -> ");
+		quickSort(nums, 0, nums.length-1);
+		System.out.println(Array2String(nums));
+		
 	}
 
 	
@@ -40,5 +45,41 @@ public class Util {
     	str += "]";
     	return str;    	
     }
+    
+    
+    public static void quickSort(int[] nums, int start, int end){
+    	if(start < end){
+    		int key = nums[start];
+    		int i=start, j=end;
+    		while(i < j){
+    			while(i < j && nums[j] >= key) j--;
+    			nums[i] = nums[j];
+    			while(i < j && nums[i] <= key) i++;
+    			nums[j] = nums[i];
+    		}
+    		nums[i] = key;
+    		
+    		quickSort(nums, start, i-1);
+    		quickSort(nums, i+1, end);
+    	}
+    }
+    
+    public static int splitSearch(int[] nums, int val, int start, int end){
+    	if(start > end){
+    		return -1;
+    	}
+    	
+    	int mid = (start + end)/2;
+    	if(nums[mid] == val){
+    		return mid;
+    	}else{
+    		if(nums[mid] < val){
+    			return splitSearch(nums, val, mid+1, end);
+    		}else{
+    			return splitSearch(nums, val, start, mid-1);
+    		}
+    	}
+    }
+    
 	
 }

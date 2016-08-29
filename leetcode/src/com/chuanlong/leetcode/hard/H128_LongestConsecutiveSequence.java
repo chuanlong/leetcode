@@ -37,8 +37,8 @@ public class H128_LongestConsecutiveSequence {
         			res = total;
         		}
         		
-        		map.put(i-left, total);
-        		map.put(i+right, total);
+        		map.put(key-left, total);
+        		map.put(key+right, total);
         	}else{
         		// ignore the duplicate num
         	}

@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+import com.chuanlong.leetcode.bean.TreeNode;
+
 public class E104_MaximumDepthOfBinaryTree {
 
 	/**
@@ -18,18 +20,6 @@ public class E104_MaximumDepthOfBinaryTree {
 		int rightDepth = maxDepth(root.right);
 		
 		return leftDepth > rightDepth ? (leftDepth+1) : (rightDepth+1);
-	}
-
-	
-	// Definition for a binary tree node.
-	class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int x) {
-			val = x;
-		}
 	}
 	
 

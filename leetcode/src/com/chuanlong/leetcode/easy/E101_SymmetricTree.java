@@ -2,6 +2,8 @@ package com.chuanlong.leetcode.easy;
 
 import java.util.Stack;
 
+import com.chuanlong.leetcode.bean.TreeNode;
+
 public class E101_SymmetricTree {
 
 	/**
@@ -68,10 +70,3 @@ public class E101_SymmetricTree {
 	
 }
 
-
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x) { val = x; }
-}

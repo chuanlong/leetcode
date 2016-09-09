@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+import com.chuanlong.leetcode.bean.TreeNode;
+
 public class E235_LowestCommonAncestorOfABinarySearchTree {
 
 	/**

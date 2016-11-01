@@ -25,7 +25,7 @@ public class M016_3SumClosest {
     		for(int j=i+1; j<nums.length; j++){
     			int k = closest(nums, target-nums[i]-nums[j], 0, nums.length-1, i, j);
 
-    			System.out.println("i,j,k:" + i+"," + j +"," +k);
+//    			System.out.println("i,j,k:" + i+"," + j +"," +k);
     			
     			int newDistance = Math.abs(nums[i]+nums[j]+nums[k]-target);
     			if(newDistance < distance){

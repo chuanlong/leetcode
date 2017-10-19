@@ -1,10 +1,10 @@
 package com.chuanlong.leetcode.easy;
 
-public class E67_AddBinary {
+public class E067_AddBinary {
 
 	public static void main(String[] args) {
 
-		E67_AddBinary obj = new E67_AddBinary();
+		E067_AddBinary obj = new E067_AddBinary();
 		
 		String str1 = obj.addBinary("0", "0");
 		String str2 = obj.addBinary("0", "1");

@@ -27,9 +27,9 @@ public class M090_SubsetsII {
         List<List<Integer>> list = new ArrayList<List<Integer>>();
         list.add(new ArrayList<Integer>());
         if(map.keySet().size() > 0){
-        	List<List<Integer>> newList = new ArrayList<List<Integer>>();
         	for(Integer key : map.keySet()){
         		Integer count = map.get(key);
+            	List<List<Integer>> newList = new ArrayList<List<Integer>>();
         		for(int i=0; i<=count; i++) {
         			for(int j=0; j<list.size(); j++){
         				List<Integer> newItem = new ArrayList<Integer>(list.get(j));

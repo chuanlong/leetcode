@@ -84,7 +84,7 @@ public class Util {
     public static void quickSort(int[] nums, int start, int end){
     	if(start < end){
     		int key = nums[start];
-    		int i=start, j=end;
+    		int i = start, j = end;
     		while(i < j){
     			while(i < j && nums[j] >= key) j--;
     			nums[i] = nums[j];

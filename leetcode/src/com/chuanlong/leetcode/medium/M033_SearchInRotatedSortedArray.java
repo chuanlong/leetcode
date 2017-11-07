@@ -9,8 +9,8 @@ public class M033_SearchInRotatedSortedArray {
 		int[] nums1 = new int[]{4,5,6,7,0,1,2};
 		int[] nums2 = new int[]{3,4,5,6,1,2};
 		
-//		int index1 = obj.search(nums1, 5);
-//		System.out.println("[4,5,6,7,0,1,2], 5 ->" + index1);
+		int index1 = obj.search(nums1, 5);
+		System.out.println("[4,5,6,7,0,1,2], 5 ->" + index1);
 
 		int index2 = obj.search(nums2, 2);
 		System.out.println("[3,4,5,6,1,2], 2 ->" + index2);

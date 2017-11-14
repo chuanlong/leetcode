@@ -1,8 +1,11 @@
 package com.chuanlong.leetcode.util;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import com.chuanlong.leetcode.bean.ListNode;
+import com.chuanlong.leetcode.bean.TreeNode;
 
 public class Util {
 
@@ -114,6 +117,82 @@ public class Util {
     		}
     	}
     }
+
     
+	public List<Integer> preorderTraversal(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		TreeNode cur = root;
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		while (cur != null || !stack.isEmpty()) {
+			if (cur != null) {
+				list.add(cur.val);
+				stack.push(cur);
+				cur = cur.left;
+			} else {
+				cur = stack.pop();
+				cur = cur.right;
+			}
+		}
+		return list;
+	}
+
+	public List<Integer> preorderTraversal2(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		if(root != null) stack.push(root);
+		while(!stack.isEmpty()){
+			TreeNode top = stack.pop();
+			list.add(top.val);
+			if(top.right != null) stack.push(top.right);
+			if(top.left != null) stack.push(top.left);
+		}
+		return list;
+	}
 	
+    public List<Integer> inorderTraversal(TreeNode root) {
+    	List<Integer> list = new ArrayList<Integer>();
+    	TreeNode cur = root;
+    	Stack<TreeNode> stack = new Stack<TreeNode>();
+    	while(cur != null || !stack.isEmpty()){
+    		if(cur != null){
+    			stack.push(cur);
+    			cur = cur.left;
+    		}else{
+    			cur = stack.pop();
+    			list.add(cur.val);
+    			cur = cur.right;
+    		}
+    	}
+    	return list;
+    }
+    
+	public List<Integer> postorderTraversal(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		TreeNode cur = root;
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		while(cur != null || !stack.isEmpty()){
+			if(cur != null){
+				stack.push(cur);
+				list.add(0, cur.val);
+				cur = cur.right;
+			}else{
+				cur = stack.pop();
+				cur = cur.left;
+			}
+		}
+		return list;
+	}
+
+	public List<Integer> postorderTraversal2(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		if (root != null) stack.push(root);
+		while (!stack.isEmpty()) {
+			TreeNode cur = stack.pop();
+			list.add(0, cur.val);
+			if (cur.left != null) stack.push(cur.left);
+			if (cur.right != null) stack.push(cur.right);
+		}
+		return list;
+	}
 }

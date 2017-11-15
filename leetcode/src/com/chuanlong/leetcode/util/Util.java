@@ -1,7 +1,9 @@
 package com.chuanlong.leetcode.util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 import com.chuanlong.leetcode.bean.ListNode;
@@ -83,6 +85,50 @@ public class Util {
     	return str;    	
     }
     
+    public static TreeNode String2TreeNode(String str) throws Exception{
+    	if(str == null || str.trim().length() == 0){
+    		return null;
+    	}
+    	// assert input string start with "[" and end with "]".
+    	String array = str.trim();
+    	if(!array.startsWith("[") || !array.endsWith("]")){
+    		throw new Exception("Wrong string format.");
+    	}
+    	
+    	String[] tokens = array.substring(1, array.length()-1).split(",");
+    	
+    	TreeNode root = Token2TreeNode(tokens[0]);
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        int index = 1;
+    	while(index < tokens.length){
+    		if(queue.isEmpty()){
+    			throw new Exception("Wrong string format.");
+    		}
+    		TreeNode parent = queue.poll();
+    		parent.left = Token2TreeNode(tokens[index++]);
+    		if(parent.left != null){
+    			queue.add(parent.left);
+    		}
+    		if(index < tokens.length){
+    			parent.right = Token2TreeNode(tokens[index++]);
+    			if(parent.right != null){
+    				queue.add(parent.right);
+    			}
+    		}
+    	}
+    	return root;
+    }
+    
+    private static TreeNode Token2TreeNode(String token) throws Exception{
+    	if("null".equals(token)){
+    		return null;
+    	}else{
+    		int val = Integer.parseInt(token);
+    		return new TreeNode(val);
+    	}
+    }
+    
     
     public static void quickSort(int[] nums, int start, int end){
     	if(start < end){
@@ -119,7 +165,7 @@ public class Util {
     }
 
     
-	public List<Integer> preorderTraversal(TreeNode root) {
+	public static List<Integer> preorderTraversal(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
 		TreeNode cur = root;
 		Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -136,7 +182,7 @@ public class Util {
 		return list;
 	}
 
-	public List<Integer> preorderTraversal2(TreeNode root) {
+	public static List<Integer> preorderTraversal2(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		if(root != null) stack.push(root);
@@ -149,7 +195,7 @@ public class Util {
 		return list;
 	}
 	
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public static List<Integer> inorderTraversal(TreeNode root) {
     	List<Integer> list = new ArrayList<Integer>();
     	TreeNode cur = root;
     	Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -166,7 +212,7 @@ public class Util {
     	return list;
     }
     
-	public List<Integer> postorderTraversal(TreeNode root) {
+	public static List<Integer> postorderTraversal(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
 		TreeNode cur = root;
 		Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -183,7 +229,7 @@ public class Util {
 		return list;
 	}
 
-	public List<Integer> postorderTraversal2(TreeNode root) {
+	public static List<Integer> postorderTraversal2(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		if (root != null) stack.push(root);
@@ -194,5 +240,14 @@ public class Util {
 			if (cur.right != null) stack.push(cur.right);
 		}
 		return list;
+	}
+	
+	
+	public static void printList(List<String> list){
+		if(list != null && list.size() > 0){
+			for(int i=0; i<list.size(); i++){
+				System.out.println(i+":"+list.get(i));
+			}
+		}
 	}
 }

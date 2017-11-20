@@ -1,8 +1,10 @@
 package com.chuanlong.leetcode.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -163,7 +165,6 @@ public class Util {
     		}
     	}
     }
-
     
 	public static List<Integer> preorderTraversal(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
@@ -181,7 +182,7 @@ public class Util {
 		}
 		return list;
 	}
-
+	
 	public static List<Integer> preorderTraversal2(TreeNode root) {
 		List<Integer> list = new ArrayList<Integer>();
 		Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -192,6 +193,39 @@ public class Util {
 			if(top.right != null) stack.push(top.right);
 			if(top.left != null) stack.push(top.left);
 		}
+		return list;
+	}
+
+	public static List<Integer> preorderTraversal3(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>(); // 1 left, 2 right
+		if(root != null) {
+			stack.push(root);
+			list.add(root.val);
+		}
+		while(!stack.isEmpty()){
+			TreeNode top = stack.peek();
+			if(!map.containsKey(top)){
+				// go left
+				if(top.left != null){
+					stack.push(top.left);
+					list.add(top.left.val);
+				}
+				map.put(top, 1);
+			}else if(map.get(top) == 1){
+				// go right
+				if(top.right != null){
+					stack.push(top.right);
+					list.add(top.right.val);
+				}
+				map.put(top, 2);
+			}else{
+				// pop
+				stack.pop();
+			}
+		}	
 		return list;
 	}
 	
@@ -207,6 +241,34 @@ public class Util {
     			cur = stack.pop();
     			list.add(cur.val);
     			cur = cur.right;
+    		}
+    	}
+    	return list;
+    }
+    
+    public static List<Integer> inorderTraversal2(TreeNode root) {
+    	List<Integer> list = new ArrayList<Integer>();
+    	Stack<TreeNode> stack = new Stack<TreeNode>();
+    	Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+    	if(root != null) stack.push(root);
+    	while(!stack.isEmpty()){
+    		TreeNode top = stack.peek();
+    		if(!map.containsKey(top)){
+    			// go left
+    			if(top.left != null){
+    				stack.push(top.left);
+    			}
+    			map.put(top, 1);
+    		}else if(map.get(top) == 1){
+    			// add to list and go right
+    			list.add(top.val);
+    			if(top.right != null){
+    				stack.push(top.right);
+    			}
+    			map.put(top, 2);
+    		}else{
+    			// pop
+    			stack.pop();
     		}
     	}
     	return list;
@@ -242,6 +304,29 @@ public class Util {
 		return list;
 	}
 	
+	public static List<Integer> postorderTraversal3(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+		if(root != null) stack.push(root);
+		while(!stack.isEmpty()){
+			TreeNode top = stack.peek();
+			if(!map.containsKey(top)){
+				// go left
+				if(top.left != null) stack.push(top.left);
+				map.put(top, 1);
+			}else if(map.get(top) == 1){
+				// go right
+				if(top.right != null) stack.push(top.right);
+				map.put(top, 2);
+			}else{
+				// add to list and pop
+				list.add(top.val);
+				stack.pop();
+			}
+		}
+		return list;
+	}
 	
 	public static void printList(List<String> list){
 		if(list != null && list.size() > 0){

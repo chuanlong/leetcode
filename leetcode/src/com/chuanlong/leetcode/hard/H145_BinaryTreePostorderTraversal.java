@@ -1,7 +1,9 @@
 package com.chuanlong.leetcode.hard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import com.chuanlong.leetcode.bean.TreeNode;
@@ -141,5 +143,31 @@ public class H145_BinaryTreePostorderTraversal {
     	}
     	return list;
     }
+    
+	
+	public static List<Integer> postorderTraversal4(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+		if(root != null) stack.push(root);
+		while(!stack.isEmpty()){
+			TreeNode top = stack.peek();
+			if(!map.containsKey(top)){
+				// go left
+				if(top.left != null) stack.push(top.left);
+				map.put(top, 1);
+			}else if(map.get(top) == 1){
+				// go right
+				if(top.right != null) stack.push(top.right);
+				map.put(top, 2);
+			}else{
+				// add to list and pop
+				list.add(top.val);
+				stack.pop();
+			}
+		}
+		return list;
+	}
+	
     
 }

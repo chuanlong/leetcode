@@ -1,7 +1,9 @@
 package com.chuanlong.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import com.chuanlong.leetcode.bean.TreeNode;
@@ -111,5 +113,40 @@ public class M144_BinaryTreePreorderTraversal {
     	}
     	return list;
     }
+    
+
+	public static List<Integer> preorderTraversal3(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>(); // 1 left, 2 right
+		if(root != null) {
+			stack.push(root);
+			list.add(root.val);
+		}
+		while(!stack.isEmpty()){
+			TreeNode top = stack.peek();
+			if(!map.containsKey(top)){
+				// go left
+				if(top.left != null){
+					stack.push(top.left);
+					list.add(top.left.val);
+				}
+				map.put(top, 1);
+			}else if(map.get(top) == 1){
+				// go right
+				if(top.right != null){
+					stack.push(top.right);
+					list.add(top.right.val);
+				}
+				map.put(top, 2);
+			}else{
+				// pop
+				stack.pop();
+			}
+		}	
+		return list;
+	}
+	
     
 }

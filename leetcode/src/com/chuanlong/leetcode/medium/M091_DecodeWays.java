@@ -113,4 +113,60 @@ public class M091_DecodeWays {
     	return nums[0];
     }
     
+
+    public int numDecodings2(String s) {
+        if(s == null || s.length() == 0){
+        	return 0;
+        }
+        
+        char[] tokens = s.toCharArray();
+        int n = tokens.length;
+        
+        // check format
+        for(int i=0; i<n; i++){
+        	if(tokens[i] < '0' || tokens[i] > '9'){
+        		return 0;
+        	}
+        }
+        
+        int[] nums = new int[n];
+        if(tokens[n-1] > '0'){
+    		nums[n-1] = 1;
+    	}else{
+    		nums[n-1] = 0;
+    	}
+        if(n>=2){
+        	if(tokens[n-2] > '2'){
+        		nums[n-2] = nums[n-1];
+        	}else if(tokens[n-2] == '2'){
+        		if(tokens[n-1] >= '0' && tokens[n-1] <= '6'){
+        			nums[n-2] = nums[n-1] + 1;
+        		}else{
+        			nums[n-2] = nums[n-1];
+        		}
+        	}else if(tokens[n-2] == '1'){
+        		nums[n-2] = nums[n-1] + 1;
+        	}else{
+        		nums[n-2] = 0;
+        	}
+        	
+        	for(int i=n-3; i>=0; i--){
+        		if(tokens[i] > '2'){
+        			nums[i] = nums[i+1];
+        		}else if(tokens[i] == '2'){
+        			if(tokens[i+1] >= '0' && tokens[i+1] <= '6'){
+        				nums[i] = nums[i+1] + nums[i+2];
+        			}else{
+        				nums[i] = nums[i+1];
+        			}
+        		}else if(tokens[i] == '1'){
+        			nums[i] = nums[i+1] + nums[i+2];
+        		}else{
+        			nums[i] = 0;
+        		}
+        	}	
+        }
+    	return nums[0];
+    }
+    
 }

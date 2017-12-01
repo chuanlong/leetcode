@@ -60,7 +60,6 @@ public class M091_DecodeWays {
     	return 0;
     }
     
-
     
     public int numDecodings(String s){
     	if(s == null || s.length() == 0){
@@ -168,5 +167,43 @@ public class M091_DecodeWays {
         }
     	return nums[0];
     }
+    
+    
+    
+    public int numDecodings3(String s) {
+        if(s == null || s.length() == 0){
+        	return 0;
+        }
+        
+        int n = s.length();
+        int[] f = new int[n+2];
+        f[n+1] = 0;
+        f[n] = 1;
+        
+        for(int i=n-1; i>=0; i--){
+        	char ch = s.charAt(i);
+        	if(ch == '1'){
+        		if(f[i+2] > 0){
+                	f[i] = f[i+1] + f[i+2];
+        		}else{
+        			f[i] = f[i+1];
+        		}
+        	}else if(ch == '2'){
+        		if(f[i+2] > 0 && s.charAt(i+1) >= '0' && s.charAt(i+1) <= '6'){
+            		f[i] = f[i+1] + f[i+2];
+        		}else{
+        			f[i] = f[i+1];
+        		}
+        	}else if(ch >= '3' && ch <= '9'){
+        		f[i] = f[i+1];
+        	}else if(ch == '0'){
+        		f[i] = 0;
+        	}else{
+        		f[i] = 0;
+        	}
+        }
+    	return f[0];
+    }
+    
     
 }

@@ -23,7 +23,7 @@ public class H212_WordSearchII {
     public List<String> findWords(char[][] board, String[] words) {
         List<String> list = new ArrayList<String>();
         for(String word : words){
-        	if(findWords(board, word) && !list.contains(word)){
+        	if(!list.contains(word) && findWords(board, word)){
         		list.add(word);
         	}
         }

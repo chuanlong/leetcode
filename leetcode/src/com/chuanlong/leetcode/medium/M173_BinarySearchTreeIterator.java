@@ -44,4 +44,40 @@ public class M173_BinarySearchTreeIterator {
 	    
 	}
 
+	
+	public class BSTIterator1 {
+		
+		private TreeNode root;
+		private Stack<TreeNode> stack;
+		private TreeNode cur;
+
+	    public BSTIterator1(TreeNode root) {
+	        this.root = root;
+	        this.stack = new Stack<TreeNode>();
+	        this.cur = this.root;
+	    }
+
+	    /** @return whether we have a next smallest number */
+	    public boolean hasNext() {
+	    	while(cur != null || !stack.isEmpty()){
+	    		if(cur != null){
+	    			stack.push(cur);
+	    			cur = cur.left;
+	    		}else{
+	    			return true;
+	    		}
+	    	}
+	    	return false;
+	    }
+
+	    /** @return the next smallest number */
+	    public int next() {
+	        if(hasNext()){
+	        	TreeNode node = stack.pop();
+	        	cur = node.right;
+	        	return node.val;
+	        }
+	        return Integer.MIN_VALUE;
+	    }
+	}
 }

@@ -9,11 +9,13 @@ public class M005_LongestPalindromicSubstring {
 		
 		M005_LongestPalindromicSubstring obj = new M005_LongestPalindromicSubstring();
 		
-		obj.longestPalindrome("abb");
-
-		System.out.println("abb -> bb, result:" + obj.longestPalindrome("abb"));
-		System.out.println("abbc -> bb, result:" + obj.longestPalindrome("abbc"));
-		System.out.println("a -> a, result:" + obj.longestPalindrome("a"));
+//		obj.longestPalindrome("abb");
+//
+//		System.out.println("abb -> bb, result:" + obj.longestPalindrome("abb"));
+//		System.out.println("abbc -> bb, result:" + obj.longestPalindrome("abbc"));
+//		System.out.println("a -> a, result:" + obj.longestPalindrome("a"));
+		
+		System.out.println("babad -> bab, result:" + obj.longestPalindrome1("babad"));
 		
 	}
 	
@@ -59,4 +61,39 @@ public class M005_LongestPalindromicSubstring {
     	return true;
     }
 
+    
+    public String longestPalindrome1(String s) {
+    	if(s == null || s.length() == 0){
+    		return s;
+    	}
+        char[] chs = s.toCharArray();
+    	String longest = chs[0]+"";
+    	int index = 0;
+    	for(int i=1; i<chs.length; i++){
+    		if(index-1>=0 && chs[index-1] == chs[i]){
+    			index = index-1;
+    		}else{
+    			int j=index;
+    			for(j=index; j<=i; j++){
+    				if(isPalindrome1(chs, j, i)){
+    					break;
+    				}
+    			}
+    			index = j;
+    		}
+    		longest = longest.length()>i-index+1 ? longest : s.substring(index, i+1);
+    	}
+    	return longest;
+    }
+    
+    private boolean isPalindrome1(char[] chs, int i, int j){
+    	if(i>=j){
+    		return true;
+    	}else if(chs[i] != chs[j]){
+    		return false;
+    	}else{
+    		return isPalindrome1(chs, i+1, j-1);
+    	}
+    }
+    
 }

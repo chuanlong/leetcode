@@ -40,4 +40,21 @@ public class M098_ValidateBinarySearchTree {
     	return true;
     }
 
+    
+    
+    public boolean isValidBST1(TreeNode root) {
+    	return isValidBST(root, Integer.MIN_VALUE, true, Integer.MAX_VALUE, true);
+    }
+    
+    private boolean isValidBST(TreeNode root, int min, boolean isMinInclude, int max, boolean isMaxInclude){
+    	if(root == null){ 
+    		return true;
+    	}
+    	if((root.val<min || (root.val==min && !isMinInclude))
+    			|| (root.val>max || (root.val==max && !isMaxInclude))){
+    		return false;
+    	}
+    	return isValidBST(root.left, min, isMinInclude, root.val, false) && isValidBST(root.right, root.val, false, max, isMaxInclude);
+    }
+    
 }

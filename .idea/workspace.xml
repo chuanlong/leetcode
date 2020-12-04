@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45a20ebe-1cc5-44dc-aba0-85820c6e0515" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M865_SmallestSubtreeWithAllTheDeepestNodes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M106_ConstructBinaryTreeFromInorderAndPostorderTraversal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/bean/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/bean/TreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M018_4Sum.java" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M018_4Sum.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/leetcode/bin/" />
@@ -30,14 +28,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M865_SmallestSubtreeWithAllTheDeepestNodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+            <state relative-caret-position="434">
+              <caret line="46" column="55" lean-forward="true" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M106_ConstructBinaryTreeFromInorderAndPostorderTraversal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="87" selection-start-line="12" selection-start-column="87" selection-end-line="12" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M103_BinaryTreeZigzagLevelOrderTraversal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -64,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M743_NetworkDelayTime.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="7" column="44" lean-forward="true" selection-start-line="5" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
+              <caret line="7" column="44" selection-start-line="5" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -87,6 +103,7 @@
         <option value="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M018_4Sum.java" />
         <option value="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/bean/TreeNode.java" />
         <option value="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M865_SmallestSubtreeWithAllTheDeepestNodes.java" />
+        <option value="$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M106_ConstructBinaryTreeFromInorderAndPostorderTraversal.java" />
       </list>
     </option>
   </component>
@@ -216,12 +233,13 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32966456" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32931727" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Buck" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27630523" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -247,7 +265,7 @@
     <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M743_NetworkDelayTime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="7" column="44" lean-forward="true" selection-start-line="5" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
+          <caret line="7" column="44" selection-start-line="5" selection-start-column="36" selection-end-line="7" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -267,11 +285,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M865_SmallestSubtreeWithAllTheDeepestNodes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+        <state relative-caret-position="434">
+          <caret line="46" column="55" lean-forward="true" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M103_BinaryTreeZigzagLevelOrderTraversal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" selection-start-line="14" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/src/com/chuanlong/leetcode/medium/M106_ConstructBinaryTreeFromInorderAndPostorderTraversal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="87" selection-start-line="12" selection-start-column="87" selection-end-line="12" selection-end-column="87" />
         </state>
       </provider>
     </entry>

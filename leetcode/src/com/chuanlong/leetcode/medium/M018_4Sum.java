@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class M018_4Sum {
+public class
+M018_4Sum {
 
 	/**
 	 * https://leetcode.com/problems/4sum/

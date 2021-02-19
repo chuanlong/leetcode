@@ -1,6 +1,7 @@
 package com.chuanlong.leetcode.hard;
 
 import com.chuanlong.leetcode.bean.ListNode;
+import com.chuanlong.leetcode.test.TestByteDance;
 
 public class H025_ReverseNodesInKGroup {
 
@@ -60,5 +61,45 @@ public class H025_ReverseNodesInKGroup {
     	}
     	return newHead;
     }
+
+
+	// 1,2,3,4,5 -> 3,2,1,4,5
+	// null -> null
+	// 1,2 -> 1,2
+	// 1,2,3,4,5,6 -> 3,2,1,6,5,4
+	public ListNode reverse2(ListNode root, int k) {
+		if (root == null) {
+			return null;
+		}
+		if (k <= 1) {
+			return root;
+		}
+
+		ListNode end = root;
+		for(int i=1; i<k; i++) {
+			if (end.next != null) {
+				end = end.next;
+			}else {
+				return root;
+			}
+		}
+
+		ListNode curStart = root, curTail = root, curSec = root.next;
+		while(true) {
+			if (curStart == end) {
+				break;
+			}
+
+			ListNode newNode = curSec;
+			curSec = curSec.next;
+			newNode.next = curStart;
+			curStart = newNode;
+		}
+		curTail.next = null;
+
+		ListNode tail = reverse(curSec, k);
+		curTail.next = tail;
+		return curStart;
+	}
 
 }

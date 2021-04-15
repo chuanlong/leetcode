@@ -97,7 +97,7 @@ public class H025_ReverseNodesInKGroup {
 		}
 		curTail.next = null;
 
-		ListNode tail = reverse(curSec, k);
+		ListNode tail = reverse2(curSec, k);
 		curTail.next = tail;
 		return curStart;
 	}

@@ -35,4 +35,25 @@ public class M003_LongestSubstringWithoutRepeatingCharacters {
     	return longest[n-1];
     }
 
+	public int lengthOfLongestSubstring2(String s) {
+		if(s == null || s.length() == 0) {
+			return 0;
+		}
+
+		char[] chs = s.toCharArray();
+		int x=0; // largest not contain last char
+		int y=1; // largest contain last char
+		for(int i=1; i<chs.length; i++) {
+			x = Math.max(x, y);
+			int j=i-1;
+			for(; j>=i-y; j--) {
+				if(chs[j] == chs[i]) {
+					break;
+				}
+			}
+			y = i-j;
+		}
+		return Math.max(x, y);
+	}
+
 }

@@ -46,4 +46,36 @@ public class M002_AddTwoNumbers {
     	return root;
     }
 
+
+	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+		ListNode i1 = l1;
+		ListNode i2 = l2;
+		int n = 0;
+		int sum = n + i1.val + i2.val;
+		if(sum > 9) {
+			n = 1;
+			sum = sum % 10;
+		} else {
+			n = 0;
+		}
+		ListNode root = new ListNode(sum);
+		i1 = i1.next;
+		i2 = i2.next;
+		ListNode prev = root;
+
+		while(i1 != null || i2 != null || n == 1) {
+			sum = n + (i1!= null ? i1.val : 0) + (i2!=null ? i2.val : 0);
+			if(sum > 9) {
+				n = 1;
+				sum = sum % 10;
+			} else {
+				n = 0;
+			}
+			prev.next = new ListNode(sum);
+			prev = prev.next;
+			i1 = i1!=null ? i1.next : null;
+			i2 = i2!=null ? i2.next : null;
+		}
+		return root;
+	}
 }

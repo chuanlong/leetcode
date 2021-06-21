@@ -2,6 +2,7 @@ package com.chuanlong.leetcode.easy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class E155_MinStack {
 	
@@ -60,4 +61,46 @@ public class E155_MinStack {
 	    }
 	}
 
+
+
+	class MinStack2 {
+		private final static int DEFAULT = Integer.MIN_VALUE;
+		private Stack<Integer> s1;
+		private Stack<Integer> s2;
+
+		public MinStack2() {
+			s1 = new Stack<>();
+			s2 = new Stack<>();
+		}
+
+		public void push(int val) {
+			if(s1.empty()) {
+				s2.push(val);
+			} else {
+				s2.push(Math.min(s2.peek(), val));
+			}
+			s1.push(val);
+		}
+
+		public void pop() {
+			s1.pop();
+			s2.pop();
+		}
+
+		public int top() {
+			if(s1.empty()) {
+				return DEFAULT;
+			} else {
+				return s1.peek();
+			}
+		}
+
+		public int getMin() {
+			if(s1.empty()) {
+				return DEFAULT;
+			} else {
+				return s2.peek();
+			}
+		}
+	}
 }

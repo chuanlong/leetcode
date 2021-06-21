@@ -94,4 +94,47 @@ public class M056_MergeIntervals {
         }
     }
 
+
+    public int[][] merge2(int[][] intervals) {
+        List<int[]> list = new ArrayList<>();
+
+        for(int i=0; i<intervals.length; i++) {
+            int[] curr = intervals[i];
+            int index = findIndex(list, curr[0]);
+
+            while (index < list.size()) {
+                if(curr[1] < list.get(index)[0]) {
+                    list.add(index, curr);
+                    break;
+                } else {
+                    curr[0] = Math.min(curr[0], list.get(index)[0]);
+                    curr[1] = Math.max(curr[1], list.get(index)[1]);
+                    list.remove(index);
+                }
+            }
+            if(index == list.size()) {
+                list.add(curr);
+            }
+        }
+
+        int[][] array = new int[list.size()][2];
+        for(int i=0; i<list.size(); i++) {
+            array[i][0] = (list.get(i))[0];
+            array[i][1] = (list.get(i))[1];
+        }
+        return array;
+    }
+
+    private int findIndex(List<int[]> list, int x) {
+        for(int i=0; i<list.size();) {
+            int end = list.get(i)[1];
+            if (x > end) {
+                i++;
+            } else {
+                return i;
+            }
+        }
+        return list.size();
+    }
+
 }

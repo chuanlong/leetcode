@@ -274,5 +274,44 @@ public class H282_ExpressionAddOperators {
     	x += "]";
     	return x;
     }
-   
+
+
+
+
+	public List<String> addOperators2(String num, int target) {
+		List<String> list = new ArrayList<>();
+		dfs(0, 0, 0, 0, num, target, "", list);
+		return list;
+	}
+
+	private void dfs(int deep, int val, int prev, int curr, String num, int target, String exp, List<String> list) {
+		if(deep == num.length()) {
+			if(val == target && curr == 0 && !exp.startsWith("-")) {
+				list.add(exp);
+			}
+			return;
+		}
+
+		curr = curr * 10 + (num.charAt(deep) - '0');
+
+		if(curr > 0) dfs(deep+1, val, prev, curr, num, target, exp, list);
+
+		if(exp.equals("")) {
+
+			// +
+			dfs(deep+1, curr, curr, 0, num, target, "" + curr, list);
+
+		} else {
+			// +
+			dfs(deep+1, val+curr, curr, 0, num, target, exp + "+" + curr, list);
+
+			// -
+			dfs(deep+1, val-curr, 0-curr, 0, num, target, exp + "-" + curr, list);
+
+			// *
+			dfs(deep+1, val-prev + (prev*curr), prev*curr, 0, num, target, exp + "*" + curr, list);
+		}
+	}
+
+
 }

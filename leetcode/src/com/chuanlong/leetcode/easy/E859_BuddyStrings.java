@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.easy;
 
+
+// 15:28 minutes, error 2
 public class E859_BuddyStrings {
 
     public static void main(String[] args) {

@@ -1,15 +1,10 @@
 package com.chuanlong.leetcode.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 import com.chuanlong.leetcode.bean.ListNode;
 import com.chuanlong.leetcode.bean.TreeNode;
+import javafx.util.Pair;
 
 public class Util {
 
@@ -148,7 +143,21 @@ public class Util {
     		quickSort(nums, i+1, end);
     	}
     }
-    
+
+	public static void arraySort(int[] nums) {
+		Arrays.sort(nums, Collections.reverseOrder());
+	}
+
+	public static void lambdaSort(Pair<Integer, Integer>[] pairs) {
+		Arrays.sort(pairs, (a, b) -> {
+			if(a.getKey() != b.getKey()) {
+				return a.getKey().compareTo(b.getKey());
+			} else {
+				return a.getValue().compareTo(b.getValue());
+			}
+		});
+	}
+
     public static int splitSearch(int[] nums, int val, int start, int end){
     	if(start > end){
     		return -1;
@@ -327,7 +336,7 @@ public class Util {
 		}
 		return list;
 	}
-	
+
 	public static void printList(List<String> list){
 		if(list != null && list.size() > 0){
 			for(int i=0; i<list.size(); i++){

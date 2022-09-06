@@ -145,7 +145,7 @@ public class Util {
     }
 
 	public static void arraySort(int[] nums) {
-		Arrays.sort(nums, Collections.reverseOrder());
+		Arrays.sort(nums);
 	}
 
 	public static void lambdaSort(Pair<Integer, Integer>[] pairs) {

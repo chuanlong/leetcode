@@ -1,6 +1,6 @@
-package com.chuanlong.leetcode.contest;
+package com.chuanlong.leetcode.easy;
 
-public class W309_E2399CheckDistancesBetweenSameLetters {
+public class E2399CheckDistancesBetweenSameLetters {
 
     public boolean checkDistances(String s, int[] distance) {
         char[] chs = s.toCharArray();

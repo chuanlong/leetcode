@@ -1,4 +1,4 @@
-package com.chuanlong.leetcode.contest;
+package com.chuanlong.leetcode.medium;
 
 import javafx.util.Pair;
 
@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 // W309 first 2 problems, 28:19 minutes, 1 error
-public class W309_M2400NumberOfWaysToReachAPositionAfterExactlyKSteps {
+public class M2400NumberOfWaysToReachAPositionAfterExactlyKSteps {
 
     public static void main(String[] args) {
-        W309_M2400NumberOfWaysToReachAPositionAfterExactlyKSteps obj = new W309_M2400NumberOfWaysToReachAPositionAfterExactlyKSteps();
+        M2400NumberOfWaysToReachAPositionAfterExactlyKSteps obj = new M2400NumberOfWaysToReachAPositionAfterExactlyKSteps();
         System.out.println("Test1, expect:3, output:" + obj.numberOfWays(1, 2, 3));
         System.out.println("Test2, expect:0, output:" + obj.numberOfWays(2, 5, 10));
     }

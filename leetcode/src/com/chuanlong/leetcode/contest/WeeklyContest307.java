@@ -1,5 +1,6 @@
 package com.chuanlong.leetcode.contest;
 
+// 28:04 minutes, 1 error
 public class WeeklyContest307 {
 
     public static void main(String[] args) {

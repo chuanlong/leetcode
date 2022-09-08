@@ -1,5 +1,8 @@
 package com.chuanlong.leetcode.medium;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class M2375_ConstructSmallestNumberFromDIString {
     public String smallestNumber(String pattern) {
         List<Integer> nums = new ArrayList<>();

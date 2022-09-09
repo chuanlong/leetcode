@@ -22,5 +22,5 @@ public class H2366_MinimumReplacementsToSortTheArray {
         }
         return replaces;
     }
-    
+
 }

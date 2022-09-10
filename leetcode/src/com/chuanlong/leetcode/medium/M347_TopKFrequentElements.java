@@ -1,9 +1,8 @@
 package com.chuanlong.leetcode.medium;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javafx.util.Pair;
+
+import java.util.*;
 
 public class M347_TopKFrequentElements {
 
@@ -17,6 +16,40 @@ public class M347_TopKFrequentElements {
 //		System.out.println("[1,1,1,2,2,3],2 -> [1,2] -> result:" + obj.topKFrequent(new int[]{1,1,1,2,2,3}, 2));
 		System.out.println("[4,1,-1,2,-1,2,3],2 -> [-1,2] -> result:" + obj.topKFrequent(new int[]{4,1,-1,2,-1,2,3}, 2));
 	}
+
+	public int[] topKFrequent3(int[] nums, int k) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for(int i=0; i<nums.length; i++) {
+			int count = map.getOrDefault(nums[i], 0);
+			map.put(nums[i], count+1);
+		}
+		TreeSet<Pair<Integer, Integer>> set = new TreeSet<>((a, b) ->{
+			if(a.getKey() == b.getKey()) {
+				return a.getValue().compareTo(b.getValue());
+			} else {
+				return a.getKey().compareTo(b.getKey());
+			}
+		});
+		for(int key : map.keySet()) {
+			if(set.size() < k) {
+				set.add(new Pair(map.get(key), key));
+			} else {
+				Pair<Integer, Integer> pair = set.first();
+				if(map.get(key) > pair.getKey()) {
+					set.remove(pair);
+					set.add(new Pair(map.get(key), key));
+				}
+			}
+		}
+		int[] list = new int[set.size()];
+		int i=0;
+		for(Pair<Integer, Integer> pair: set) {
+			list[i++] = (pair.getValue());
+		}
+		return list;
+	}
+
+
 	
     public List<Integer> topKFrequent(int[] nums, int k) {
         List<Integer> list = new ArrayList<Integer>();

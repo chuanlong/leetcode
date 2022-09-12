@@ -16,38 +16,36 @@ public class H224_BasicCalculator {
 
 
 	public int calculate(String s) {
-		Stack<Integer> stack = new Stack<>();
-		int operand = 0;
-		int result = 0;
+		int expr = 0, curr = 0;
 		int signal = 1;
 		char[] chs = s.toCharArray();
 		for(int i=0; i<chs.length; i++) {
 			char ch = chs[i];
 			if(ch >= '0' && ch <= '9') {
-				operand = operand*10 + (ch-'0');
-			} else if (ch == '+') {
-				result = result + signal*operand;
-				signal = 1;
-				operand = 0;
-			} else if (ch == '-') {
-				result = result + signal*operand;
-				signal = -1;
-				operand = 0;
+				curr = curr*10 + (ch-'0');
+			} else if (ch == '+' || ch == '-') {
+				expr = expr + signal*curr;
+				curr = 0;
+				signal = (ch == '+') ? 1 : -1;
 			} else if (ch == '(') {
-				stack.push(result);
-				stack.push(signal);
-				result = 0;
-				signal = 1;
-			} else if (ch == ')') {
-				int prevSignal = stack.pop();
-				int prevOperand = stack.pop();
-
-				result = prevOperand + prevSignal * (result + signal*operand);
-				signal = 1;
-				operand = 0;
+				int j = indexOfRight(chs, i);
+				curr = calculate(s.substring(i+1, j));
+				i = j;
 			}
 		}
-		return result + signal*operand;
+		return expr + signal*curr;
+	}
+
+	private int indexOfRight(char[] chs, int index) {
+		int count = 0;
+		for(int i=index; i<chs.length; i++) {
+			if(chs[i] == '(') count++;
+			if(chs[i] == ')') {
+				count--;
+				if(count == 0) return i;
+			}
+		}
+		return -1;
 	}
 
 

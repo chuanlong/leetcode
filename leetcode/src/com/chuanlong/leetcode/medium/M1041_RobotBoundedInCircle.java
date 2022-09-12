@@ -2,6 +2,7 @@ package com.chuanlong.leetcode.medium;
 
 public class M1041_RobotBoundedInCircle {
 
+    // 14:58, 0 error
     public boolean isRobotBounded(String instructions) {
         int[] end = getPoint(new int[]{0, 0, 0}, instructions);
         if(end[0] == 0 && end[1] == 0) return true;

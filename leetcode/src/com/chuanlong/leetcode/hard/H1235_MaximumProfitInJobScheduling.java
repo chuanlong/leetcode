@@ -32,10 +32,35 @@ public class H1235_MaximumProfitInJobScheduling {
 
 
 
-
-
-
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        TreeMap<Integer, Integer> points = new TreeMap<>();
+        TreeMap<Integer, TreeSet<int[]>> map = new TreeMap<>();
+        int n = startTime.length;
+        for(int i=0; i<n; i++) {
+            if(!map.containsKey(endTime[i])) map.put(endTime[i], new TreeSet<>((a, b) -> {
+                if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
+                else return Integer.compare(a[0], b[0]);
+            }));
+            map.get(endTime[i]).add(new int[]{startTime[i], profit[i]});
+            points.put(startTime[i], 0);
+            points.put(endTime[i], 0);
+        }
+
+        List<Integer> keys = new ArrayList<>(points.keySet());
+        for(int i=1; i<keys.size(); i++) {
+            int key = keys.get(i);
+            int max = points.get(keys.get(i-1));
+            if(map.containsKey(key)) for(int[] pair: map.get(key)) max = Math.max(max, points.get(pair[0]) +pair[1]);
+            points.put(key, max);
+        }
+        return points.lastEntry().getValue();
+    }
+
+
+
+
+
+    public int jobScheduling2(int[] startTime, int[] endTime, int[] profit) {
         sortAsc(endTime, startTime, profit, 0, endTime.length-1);
 
         List<Integer> points = getPoints(startTime, endTime);

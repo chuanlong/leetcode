@@ -64,15 +64,15 @@ public class M1792_MaximumAveragePassRatio {
 
     public double maxAverageRatio(int[][] classes, int extraStudents) {
         int n = classes.length;
-        PriorityQueue<Node> priorityQueue = new PriorityQueue<Node>(Comparator.reverseOrder());
+        PriorityQueue<Node2> priorityQueue = new PriorityQueue<Node2>(Comparator.reverseOrder());
         for(int i=0; i<n; i++) {
-            priorityQueue.add(new Node(i, ratioDiff(classes, i)));
+            priorityQueue.add(new Node2(i, ratioDiff(classes, i)));
         }
         for(int i=0; i<extraStudents; i++) {
-            Node node = priorityQueue.poll();
+            Node2 node = priorityQueue.poll();
             classes[node.key][0] = classes[node.key][0]+1;
             classes[node.key][1] = classes[node.key][1]+1;
-            priorityQueue.add(new Node(node.key, ratioDiff(classes, node.key)));
+            priorityQueue.add(new Node2(node.key, ratioDiff(classes, node.key)));
         }
         double sumPassRatio = 0;
         for(int i=0; i<n; i++){
@@ -85,16 +85,16 @@ public class M1792_MaximumAveragePassRatio {
         return (((double)(classes[i][0]+1))/((double)(classes[i][1]+1))) - (((double)classes[i][0])/((double)classes[i][1]));
     }
 
-    class Node implements Comparable{
+    class Node2 implements Comparable{
         int key;
         double val;
-        public Node(int key, double val) {
+        public Node2(int key, double val) {
             this.key = key;
             this.val = val;
         }
         @Override
         public int compareTo(Object o) {
-            return Double.compare(val, ((Node) o).val);
+            return Double.compare(val, ((Node2) o).val);
         }
     }
 

@@ -1,27 +1,100 @@
 package com.chuanlong.leetcode.hard;
 
-import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javafx.util.Pair;
+import java.util.*;
 
 public class H317_ShortestDistanceFromAllBuildings {
 
     public static void main(String[] args) {
         H317_ShortestDistanceFromAllBuildings obj = new H317_ShortestDistanceFromAllBuildings();
 
-        System.out.println("Test1, expect:7, result:" + obj.shortestDistance(new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,1}}));
+        System.out.println("Test1, expect:7, result:" + obj.shortestDistance(new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}}));
     }
 
-
-
+    // TLE
     public int shortestDistance(int[][] grid) {
+        TreeSet<Pair<Integer, Integer>> lands = new TreeSet<>((a,b) -> {
+            if(a.getKey() == b.getKey()) return Integer.compare(a.getValue(), b.getValue());
+            else return Integer.compare(a.getKey(), b.getKey());
+        });
+        TreeSet<Pair<Integer, Integer>> buildings = new TreeSet<>((a,b) -> {
+            if(a.getKey() == b.getKey()) return Integer.compare(a.getValue(), b.getValue());
+            else return Integer.compare(a.getKey(), b.getKey());
+        });
+        for(int i=0; i<grid.length; i++) {
+            for(int j=0; j<grid[0].length; j++) {
+                if(grid[i][j] == 0) lands.add(new Pair<>(i, j));
+                else if(grid[i][j] == 1) buildings.add(new Pair<>(i, j));
+            }
+        }
 
-        return -1;
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<grid.length; i++) {
+            for(int j=0; j<grid[0].length; j++) {
+                if(grid[i][j] == 0) {
+                    min = Math.min(min, bfs(grid, i, j, buildings, lands));
+                }
+            }
+        }
+        if(min == Integer.MAX_VALUE) return -1;
+        return min;
     }
 
+    private int bfs(int[][] grid, int x, int y, TreeSet<Pair<Integer, Integer>> buildings, TreeSet<Pair<Integer, Integer>> lands) {
+        Map<Pair<Integer, Integer>, Integer> distances = new HashMap<>();
+        Queue<Pair<Integer, Integer>> queue = new ArrayDeque<>();
+        Pair<Integer, Integer> root = new Pair<>(x, y);
+        distances.put(root, 0);
+        queue.add(root);
+        int countHouse = 0;
+        while(queue.size() > 0 && countHouse < buildings.size()) {
+            Pair<Integer, Integer> pair = queue.poll();
+            int x1 = pair.getKey(), y1 = pair.getValue();
+            int distance1 = distances.get(pair)+1;
+            countHouse += check(grid, x1-1, y1, distance1, distances, queue);
+            countHouse += check(grid, x1+1, y1, distance1, distances, queue);
+            countHouse += check(grid, x1, y1-1, distance1, distances, queue);
+            countHouse += check(grid, x1, y1+1, distance1, distances, queue);
+        }
+
+        if(countHouse == buildings.size()) {
+            int min = 0;
+            for(Pair<Integer, Integer> building : buildings) {
+                min += distances.get(building);
+            }
+            return min;
+        } else {
+            TreeSet<Pair<Integer, Integer>> landsClone = new TreeSet<>(lands);
+            for(Pair<Integer, Integer> land : landsClone) {
+                if(distances.containsKey(land)) {
+                    lands.remove(land);
+                    grid[land.getKey()][land.getValue()] = 2;
+                }
+            }
+            return Integer.MAX_VALUE;
+        }
+    }
+
+    private int check(int[][] grid, int x, int y, int distance,
+                      Map<Pair<Integer, Integer>, Integer> distances,
+                      Queue<Pair<Integer, Integer>> queue) {
+        if(x<0 || x>=grid.length || y<0 || y>=grid[0].length) return 0;
+        if(grid[x][y] == 2) return 0;
+        Pair<Integer, Integer> pair = new Pair<>(x, y);
+        if(distances.containsKey(pair)) return 0;
+
+        if(grid[x][y] == 0) {
+            queue.add(pair);
+            distances.put(pair, distance);
+            return 0;
+        } else if (grid[x][y] == 1) {
+            distances.put(pair, distance);
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
 
 

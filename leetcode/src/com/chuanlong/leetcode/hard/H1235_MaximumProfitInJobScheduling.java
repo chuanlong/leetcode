@@ -57,9 +57,6 @@ public class H1235_MaximumProfitInJobScheduling {
     }
 
 
-
-
-
     public int jobScheduling2(int[] startTime, int[] endTime, int[] profit) {
         sortAsc(endTime, startTime, profit, 0, endTime.length-1);
 

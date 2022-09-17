@@ -1,4 +1,4 @@
-package com.chuanlong.leetcode.company;
+package com.chuanlong.leetcode.unassign;
 
 import java.util.ArrayList;
 import java.util.List;

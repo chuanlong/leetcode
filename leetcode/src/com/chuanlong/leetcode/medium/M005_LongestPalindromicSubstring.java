@@ -15,11 +15,85 @@ public class M005_LongestPalindromicSubstring {
 //		System.out.println("abbc -> bb, result:" + obj.longestPalindrome("abbc"));
 //		System.out.println("a -> a, result:" + obj.longestPalindrome("a"));
 		
-		System.out.println("babad -> bab, result:" + obj.longestPalindrome1("babad"));
+		System.out.println("babad -> bab, result:" + obj.longestPalindrome("babad"));
 		
 	}
+
+	public String longestPalindrome(String s) {
+		int n = s.length();
+		char[] chs = s.toCharArray();
+		int[] a = new int[n];
+		a[0] = 1;
+		String sub = chs[0] + "";
+		for(int i=1; i<n; i++) {
+			if(i-a[i-1]-1>=0 && chs[i] == chs[i-a[i-1]-1]) {
+				a[i] = a[i-1] + 2;
+			} else {
+				for(int j=i-a[i-1]; j<=i; j++) {
+					if(isPalindromic(chs, j, i)) {
+						a[i] = i+1-j;
+						break;
+					}
+				}
+			}
+			if(a[i] > sub.length()) {
+				sub = s.substring(i-a[i]+1, i+1);
+			}
+		}
+		return sub;
+	}
+
+
+
+	private boolean isPalindromic(char[] chs, int i, int j) {
+		while(i<j) {
+			if(chs[i] != chs[j]) return false;
+			i++;
+			j--;
+		}
+		return true;
+	}
+
+	public String longestPalindrome3(String s) {
+		int n = s.length();
+		String[] a = new String[n];
+		String[] b = new String[n];
+
+		char[] chs = s.toCharArray();
+		a[0] = "";
+		b[0] = chs[0]+"";
+		for(int i=1; i<n; i++) {
+			// a[i]
+			a[i] = (a[i-1].length() >= b[i-1].length()) ? a[i-1] : b[i-1];
+
+			// b[i]
+			if(i-b[i-1].length()-1>=0 && chs[i] == chs[i-b[i-1].length()-1]) {
+				b[i] = chs[i] + b[i-1] + chs[i];
+			} else {
+				for(int j=i-b[i-1].length(); j<=i; j++) {
+					if(isPalindromic3(chs, j, i)) {
+						b[i] = s.substring(j, i+1);
+						break;
+					}
+				}
+			}
+		}
+
+
+		return (a[n-1].length() > b[n-1].length()) ? a[n-1] : b[n-1];
+	}
+
+	private boolean isPalindromic3(char[] chs, int i, int j) {
+		while(i<j) {
+			if(chs[i] != chs[j]) return false;
+			i++;
+			j--;
+		}
+		return true;
+	}
+
 	
-    public String longestPalindrome(String s) {
+    public String longestPalindrome2(String s) {
     	if(s == null || s.length() <= 1){
     		return s;
     	}
@@ -37,7 +111,7 @@ public class M005_LongestPalindromicSubstring {
     		int start = i - longestWithEnd.length() - 1;
     		start = start >= 0 ? start : 0;
     		
-    		while(!isPalindrome(chars, start, i)){
+    		while(!isPalindrome2(chars, start, i)){
     			start++;
     		}
     		
@@ -48,7 +122,7 @@ public class M005_LongestPalindromicSubstring {
     	return longest;
     }
     
-    private boolean isPalindrome(char[] chars, int start, int end){
+    private boolean isPalindrome2(char[] chars, int start, int end){
     	if(start > end){
     		return false;
     	}

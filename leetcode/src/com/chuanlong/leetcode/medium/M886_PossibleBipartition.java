@@ -1,9 +1,39 @@
 package com.chuanlong.leetcode.medium;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class M886_PossibleBipartition {
+
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for(int i=0; i<n+1; i++) map.put(i, new ArrayList<>());
+        for(int i=0; i<dislikes.length; i++) {
+            map.get(dislikes[i][0]).add(dislikes[i][1]);
+            map.get(dislikes[i][1]).add(dislikes[i][0]);
+        }
+
+        boolean[] color = new boolean[n+1];
+        boolean[] visited = new boolean[n+1];
+        for(int i=1; i<n+1; i++) {
+            if(!visited[i]) {
+                if(!dfs(map, visited, color, i)) return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean dfs(Map<Integer, List<Integer>> map, boolean[] visited, boolean[] color, int x) {
+        visited[x] = true;
+        for(int y : map.getOrDefault(x, new ArrayList<>())) {
+            if(!visited[y]) {
+                color[y] = !color[x];
+                dfs(map, visited, color, y);
+            }
+            else if (color[y] == color[x]) return false;
+        }
+        return true;
+    }
+
 
 
     public boolean possibleBipartition2(int n, int[][] dislikes) {

@@ -1,6 +1,6 @@
-package com.chuanlong.leetcode.easy;
+package com.chuanlong.leetcode.medium;
 
-public class E036_ValidSudoku {
+public class M036_ValidSudoku {
 
 	/**
 	 * https://oj.leetcode.com/problems/valid-sudoku/

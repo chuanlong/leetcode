@@ -2,11 +2,82 @@ package com.chuanlong.leetcode.hard;
 
 public class H037_SudokuSolver {
 
-    public void solveSudoku(char[][] board) {
-    	solveSudoku(board, 0, 0);
+    public void solveSudoku2(char[][] board) {
+    	solveSudoku2(board, 0, 0);
     }
-    
-    private boolean solveSudoku(char[][] board, int i, int j){
+
+	public void solveSudoku(char[][] board) {
+		solveSudoku(board, 0, 0);
+	}
+
+	private boolean solveSudoku(char[][] board, int x, int y) {
+		if(x == 9) return true;
+
+		int xx, yy;
+		if(y==8) {
+			xx = x+1;
+			yy = 0;
+		} else {
+			xx = x;
+			yy = y+1;
+		}
+
+		char ch = board[x][y];
+		if(ch == '.') {
+			for(int d=1; d<10; d++) {
+				if(isValid(board, x, y, d)) {
+					board[x][y] = (char)('1'+d-1);
+					if(solveSudoku(board, xx, yy)) return true;
+					board[x][y] = '.';
+				}
+			}
+			return false;
+		} else {
+			return solveSudoku(board, xx, yy);
+		}
+	}
+
+	private boolean isValid(char[][] board, int x, int y, int digit) {
+		if(board[x][y] != '.') return false;
+
+		for(int i=0; i<9; i++) {
+			boolean[] visited = new boolean[9];
+			visited[digit-1] = true;
+			char ch = board[i][y];
+			if(i!=x && ch != '.') {
+				if(visited[ch-'1']) return false;
+				else visited[ch-'1'] = true;
+			}
+		}
+
+		for(int j=0; j<9; j++) {
+			boolean[] visited = new boolean[9];
+			visited[digit-1] = true;
+			char ch = board[x][j];
+			if(j!=y && ch != '.') {
+				if(visited[ch-'1']) return false;
+				else visited[ch-'1'] = true;
+			}
+		}
+
+		int u=(x/3)*3, v=(y/3)*3;
+		boolean[] visited = new boolean[9];
+		visited[digit-1] = true;
+		for(int i=u; i<u+3; i++) {
+			for(int j=v; j<v+3; j++) {
+				char ch = board[i][j];
+				if(!(i==x && j==y) && ch != '.') {
+					if(visited[ch-'1']) return false;
+					else visited[ch-'1'] = true;
+				}
+			}
+		}
+
+		return true;
+	}
+
+
+	private boolean solveSudoku2(char[][] board, int i, int j){
     	if(i==9){
     		return true;
     	}
@@ -21,13 +92,13 @@ public class H037_SudokuSolver {
 		}
     	
     	if(board[i][j] != '.'){
-    		return solveSudoku(board, x, y);
+    		return solveSudoku2(board, x, y);
     	}
     	
     	for(int k=0; k<9; k++){
     		board[i][j] = (char)('1'+k);
-    		if(checkValid(board, i, j)){
-    			if(solveSudoku(board, x, y)){
+    		if(checkValid2(board, i, j)){
+    			if(solveSudoku2(board, x, y)){
     				return true;
     			}
     		}
@@ -37,7 +108,7 @@ public class H037_SudokuSolver {
     	return false;
     }
     
-    private boolean checkValid(char[][] board, int i, int j){
+    private boolean checkValid2(char[][] board, int i, int j){
     	int iStart = 0, iEnd = 2;
     	if(i>=3 && i<=5){
     		iStart = 3;

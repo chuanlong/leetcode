@@ -11,11 +11,38 @@ public class M046_Permutations {
 
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> all = new ArrayList<>();
-        backtrack(nums, new ArrayList<>(), all);
+        List<Integer> remain = new ArrayList<>();
+        for(int i=0; i<nums.length; i++) {
+            remain.add(nums[i]);
+        }
+        backtrack(nums, new ArrayList<>(), remain, all);
         return all;
     }
 
-    private void backtrack(int[] nums, List<Integer> list, List<List<Integer>> all) {
+    private void backtrack(int[] nums, List<Integer> list, List<Integer> remain, List<List<Integer>> all) {
+        if(remain.isEmpty()) {
+            all.add(new ArrayList<>(list));
+            return;
+        }
+
+        int size = remain.size();
+        for(int i=0; i<size; i++) {
+            int num = remain.get(i);
+            list.add(num);
+            remain.remove(i);
+            backtrack(nums, list, remain, all);
+            list.remove(list.size()-1);
+            remain.add(i, num);
+        }
+    }
+
+    public List<List<Integer>> permute3(int[] nums) {
+        List<List<Integer>> all = new ArrayList<>();
+        backtrack3(nums, new ArrayList<>(), all);
+        return all;
+    }
+
+    private void backtrack3(int[] nums, List<Integer> list, List<List<Integer>> all) {
         if(list.size() == nums.length) {
             all.add(new ArrayList<>(list));
             return;
@@ -25,7 +52,7 @@ public class M046_Permutations {
         int num = nums[k];
         for(int i=0; i<k+1; i++) {
             list.add(i, num);
-            backtrack(nums, list, all);
+            backtrack3(nums, list, all);
             list.remove(i);
         }
     }

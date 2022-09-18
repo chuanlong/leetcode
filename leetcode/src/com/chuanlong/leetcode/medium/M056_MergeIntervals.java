@@ -1,6 +1,7 @@
 package com.chuanlong.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,9 +20,35 @@ public class M056_MergeIntervals {
         intervals1.add(new Interval(8, 10));
         intervals1.add(new Interval(15, 18));
         
-        obj.merge(intervals1);
+        obj.merge3(intervals1);
         
         
+    }
+
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> {
+            if(a[0] == b[0]) return a[1]-b[1];
+            else return a[0]-b[0];
+        });
+
+        List<int[]> list = new ArrayList<>();
+        int[] cur = intervals[0];
+        for(int i=1; i<intervals.length; i++) {
+            if(cur[1] < intervals[i][0]) {
+                list.add(cur);
+                cur = intervals[i];
+            } else {
+                cur = new int[]{cur[0], Math.max(cur[1], intervals[i][1])};
+            }
+        }
+        list.add(cur);
+
+        int[][] result = new int[list.size()][2];
+        for(int i=0; i<list.size(); i++) {
+            result[i][0] = list.get(i)[0];
+            result[i][1] = list.get(i)[1];
+        }
+        return result;
     }
     
     /**
@@ -29,7 +56,7 @@ public class M056_MergeIntervals {
      * Given [1,3],[2,6],[8,10],[15,18],
      * return [1,6],[8,10],[15,18].
      * */
-    public List<Interval> merge(List<Interval> intervals) {
+    public List<Interval> merge3(List<Interval> intervals) {
         if (intervals == null || intervals.size() == 0) {
             return intervals;
         }

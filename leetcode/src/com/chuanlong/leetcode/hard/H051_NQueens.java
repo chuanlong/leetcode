@@ -12,8 +12,53 @@ public class H051_NQueens {
 		
 		H051_NQueens obj = new H051_NQueens();
 		
-		obj.solveNQueens(4);
+		obj.solveNQueens2(4);
 
+	}
+
+	public List<List<String>> solveNQueens(int n) {
+		char[][] grid = new char[n][n];
+		for(int i=0; i<n; i++) for(int j=0; j<n; j++) grid[i][j] = '.';
+		List<List<String>> all = new ArrayList<>();
+		backtrack(all, grid, 0, n);
+		return all;
+	}
+
+	private void backtrack(List<List<String>> all, char[][] grid, int row, int n) {
+		if(row >= n) {
+			List<String> list = new ArrayList<>();
+			for(int i=0; i<n; i++) {
+				StringBuilder sb = new StringBuilder();
+				for(int j=0; j<n; j++) {
+					sb.append(grid[i][j]);
+				}
+				list.add(sb.toString());
+			}
+			all.add(list);
+			return;
+		}
+
+		for(int j=0; j<n; j++) {
+			int i = row;
+			grid[i][j] = 'Q';
+			if(isValid(grid, n, i, j)) backtrack(all, grid, row+1, n);
+			grid[i][j] = '.';
+		}
+	}
+
+	private boolean isValid(char[][] grid, int n, int x, int y) {
+		// left up
+		for(int i=x-1, j=y-1; i>=0 && j>=0; i--, j--) {
+			if(grid[i][j] == 'Q') return false;
+		}
+		// right up
+		for(int i=x-1, j=y+1; i>=0 && j<n; i--, j++) {
+			if(grid[i][j] == 'Q') return false;
+		}
+		for(int i=x-1, j=y; i>=0; i--) {
+			if(grid[i][j] == 'Q') return false;
+		}
+		return true;
 	}
 	
 	private final static String CHESS_QUEEN = "Q";
@@ -21,8 +66,8 @@ public class H051_NQueens {
 	
 	private final static int QUEEN = -1;
 	private final static int DEFAULT = 0;
-	
-    public List<List<String>> solveNQueens(int n) {
+
+    public List<List<String>> solveNQueens2(int n) {
     	List<List<String>> list = new ArrayList<List<String>>();
     	int[][] chessboard = new int[n][n];
     	
@@ -33,12 +78,12 @@ public class H051_NQueens {
 			}
 		}
     	
-    	traversal(0, n, chessboard, list);    	
+    	traversal2(0, n, chessboard, list);
     	return list;
     }
     
 
-    private void traversal(int level, int n, int[][] chessboard, List<List<String>> list){
+    private void traversal2(int level, int n, int[][] chessboard, List<List<String>> list){
     	if(level == n){
     		// add current chessboard to list
     		List<String> solution = new ArrayList<String>();
@@ -63,21 +108,21 @@ public class H051_NQueens {
     			chessboard[level][j] = QUEEN;
     			
     			// impact of the QUEEN
-    			impactQueen(level, j, n, chessboard, 1);
+    			impactQueen2(level, j, n, chessboard, 1);
     			
-    			traversal(level+1, n, chessboard, list);
+    			traversal2(level+1, n, chessboard, list);
     			
     			// set [level, j] to default, try next
     			chessboard[level][j] = DEFAULT;
     			
     			// cancel impact of the QUEEN
-    			impactQueen(level, j, n, chessboard, -1);
+    			impactQueen2(level, j, n, chessboard, -1);
     		}
     	}	
     	
     }
     
-    private void impactQueen(int x, int y, int n, int[][] chessboard, int impact){
+    private void impactQueen2(int x, int y, int n, int[][] chessboard, int impact){
     	// set the QUEEN disable chessboard
 		
 		// row

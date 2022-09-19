@@ -31,5 +31,5 @@ public class M1352_ProductOfTheLastKNumbers {
             return products.get(products.size()-1) / products.get(products.size()-k-1);
         }
     }
-    
+
 }

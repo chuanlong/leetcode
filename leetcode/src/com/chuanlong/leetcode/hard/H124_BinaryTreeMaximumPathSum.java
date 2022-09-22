@@ -13,20 +13,55 @@ public class H124_BinaryTreeMaximumPathSum {
 	public static void main(String[] args) {
 
 	}
-	
 
-    public int maxPathSum(TreeNode root){
+
+	public int maxPathSum(TreeNode root) {
+		return max(root, new HashMap<>())[1];
+	}
+
+	// [maxPathSum, maxFromRoot]
+	private int[] max(TreeNode root, Map<TreeNode, int[]> map) {
+		if(root == null) return new int[]{Integer.MIN_VALUE, 0};
+		if(map.containsKey(root)) return map.get(root);
+
+		int[] max;
+		if(root.left == null && root.right == null) {
+			max = new int[]{root.val, root.val};
+		} else if (root.left != null && root.right == null) {
+			max = max(root.left, map);
+			int max0 = root.val + Math.max(max[0], 0);
+			int max1 = Math.max(max[1], max0);
+			max = new int[]{max0, max1};
+		} else if (root.left == null && root.right != null) {
+			max = max(root.right, map);
+			int max0 = root.val + Math.max(max[0], 0);
+			int max1 = Math.max(max[1], max0);
+			max = new int[]{max0, max1};
+		} else {
+			int[] maxLeft = max(root.left, map);
+			int[] maxRight = max(root.right, map);
+
+			int max0 = root.val + Math.max(Math.max(maxLeft[0], maxRight[0]), 0);
+			int max1 = Math.max(Math.max(maxLeft[1], maxRight[1]), Math.max(maxLeft[0],0)+Math.max(maxRight[0],0)+root.val);
+
+			max = new int[]{max0, max1};
+		}
+		map.put(root, max);
+		return max;
+	}
+
+    public int maxPathSum2(TreeNode root){
 
         Map<TreeNode, Integer> maxPathSumMap = new HashMap<>();
         Map<TreeNode, Integer> maxRootPathSumMap = new HashMap<>();
     	
-        return maxPathSum(root, maxPathSumMap, maxRootPathSumMap);
+        return maxPathSum2(root, maxPathSumMap, maxRootPathSumMap);
     }
     
     
-    public int maxPathSum(TreeNode root, 
-    		Map<TreeNode, Integer> maxPathSumMap, 
-    		Map<TreeNode, Integer> maxRootPathSumMap) {
+    public int maxPathSum2(TreeNode root,
+						   Map<TreeNode, Integer> maxPathSumMap,
+						   Map<TreeNode, Integer> maxRootPathSumMap) {
         if(root == null){
         	return Integer.MIN_VALUE;
         }
@@ -34,11 +69,11 @@ public class H124_BinaryTreeMaximumPathSum {
         	return maxPathSumMap.get(root);
         }
 
-        int leftMax = maxPathSum(root.left, maxPathSumMap, maxRootPathSumMap);
-        int rightMax = maxPathSum(root.right, maxPathSumMap, maxRootPathSumMap);
+        int leftMax = maxPathSum2(root.left, maxPathSumMap, maxRootPathSumMap);
+        int rightMax = maxPathSum2(root.right, maxPathSumMap, maxRootPathSumMap);
         
-        int leftRootMax = maxRootPathSum(root.left, maxPathSumMap, maxRootPathSumMap);
-        int rightRootMax = maxRootPathSum(root.right, maxPathSumMap, maxRootPathSumMap);
+        int leftRootMax = maxRootPathSum2(root.left, maxPathSumMap, maxRootPathSumMap);
+        int rightRootMax = maxRootPathSum2(root.right, maxPathSumMap, maxRootPathSumMap);
         int mixMax = root.val;
         if(leftRootMax > 0){
         	mixMax = mixMax + leftRootMax;
@@ -53,9 +88,9 @@ public class H124_BinaryTreeMaximumPathSum {
     }
     
     
-    public int maxRootPathSum(TreeNode root, 
-    		Map<TreeNode, Integer> maxPathSumMap, 
-    		Map<TreeNode, Integer> maxRootPathSumMap){
+    public int maxRootPathSum2(TreeNode root,
+							   Map<TreeNode, Integer> maxPathSumMap,
+							   Map<TreeNode, Integer> maxRootPathSumMap){
     	if(root == null){
         	return Integer.MIN_VALUE;
     	}
@@ -63,8 +98,8 @@ public class H124_BinaryTreeMaximumPathSum {
     		return maxRootPathSumMap.get(root);
     	}
     	
-    	int left = maxRootPathSum(root.left, maxPathSumMap, maxRootPathSumMap);
-    	int right = maxRootPathSum(root.right, maxPathSumMap, maxRootPathSumMap);
+    	int left = maxRootPathSum2(root.left, maxPathSumMap, maxRootPathSumMap);
+    	int right = maxRootPathSum2(root.right, maxPathSumMap, maxRootPathSumMap);
     	
     	int max = root.val;
     	if(left > 0 || right > 0){

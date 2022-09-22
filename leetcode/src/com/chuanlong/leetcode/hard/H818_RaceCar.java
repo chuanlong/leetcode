@@ -4,8 +4,10 @@ import java.util.*;
 
 public class H818_RaceCar {
 
+
+
     // TLE
-    public int racecar(int target) {
+    public int racecar2(int target) {
         if(target == 0) return 0;
         // [pos, speed] -> step
         TreeMap<List<Integer>, Integer> visited = new TreeMap<>((a, b) ->{
@@ -14,7 +16,7 @@ public class H818_RaceCar {
         });
 
         // minStep, step, pos, speed
-        List<Integer> start = Arrays.asList(getMinStep(0,0,1,target), 0, 0, 1);
+        List<Integer> start = Arrays.asList(getMinStep2(0,0,1,target), 0, 0, 1);
         PriorityQueue<List<Integer>> queue = new PriorityQueue<List<Integer>>((a, b) -> {
             if(a.get(0) == b.get(0)) return a.get(1) - b.get(1);
             else return a.get(0) - b.get(0);
@@ -30,14 +32,14 @@ public class H818_RaceCar {
             int pos1 = item.get(2)+item.get(3), speed1 = item.get(3)*2, step1 = item.get(1)+1;
             List<Integer> item1 = Arrays.asList(pos1, speed1);
             if(!visited.containsKey(item1)) {
-                queue.add(Arrays.asList(getMinStep(step1, pos1, speed1, target), step1, pos1, speed1));
+                queue.add(Arrays.asList(getMinStep2(step1, pos1, speed1, target), step1, pos1, speed1));
                 visited.put(item1, step1);
             }
 
             int pos2 = item.get(2), speed2 = (item.get(3))>0 ? -1 : 1, step2 = item.get(1)+1;
             List<Integer> item2 = Arrays.asList(pos2, speed2);
             if(!visited.containsKey(item2)) {
-                queue.add(Arrays.asList(getMinStep(step2, pos2, speed2, target), step2, pos2, speed2));
+                queue.add(Arrays.asList(getMinStep2(step2, pos2, speed2, target), step2, pos2, speed2));
                 visited.put(item2, step2);
             }
         }
@@ -45,7 +47,7 @@ public class H818_RaceCar {
         return -1;
     }
 
-    private int getMinStep(int step, int pos, int speed, int target) {
+    private int getMinStep2(int step, int pos, int speed, int target) {
         if(pos<target) {
             if(speed < 0) {
                 speed = 1;

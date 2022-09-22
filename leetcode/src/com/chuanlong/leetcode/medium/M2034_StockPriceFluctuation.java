@@ -1,19 +1,16 @@
 package com.chuanlong.leetcode.medium;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class M2034_StockPriceFluctuation {
     class StockPrice {
 
-        private List<Integer> list;
+        private TreeMap<Integer, Integer> prices;
         private Map<Integer, Integer> map;
-        private Integer cur;
+        private int cur;
 
         public StockPrice() {
-            list = new ArrayList<>();
+            prices = new TreeMap<>();
             map = new HashMap<>();
             cur = -1;
         }
@@ -22,20 +19,17 @@ public class M2034_StockPriceFluctuation {
             if(cur < timestamp) cur = timestamp;
             if(map.containsKey(timestamp)){
                 int oldPrice = map.get(timestamp);
-                list.remove(list.indexOf(oldPrice));
+                int cnt = prices.get(oldPrice);
+                if(cnt == 1) {
+                    prices.remove(oldPrice);
+                } else {
+                    prices.put(oldPrice, cnt-1);
+                }
             }
 
-            if(list.size() == 0 || price >= maximum()) {
-                list.add(price);
-            } else if (price <= minimum()) {
-                list.add(0, price);
-            } else {
-                list.add(indexOfPrice(list, price, 0, list.size()-1), price);
-            }
-
+            prices.put(price, prices.getOrDefault(price, 0)+1);
 
             map.put(timestamp, price);
-            int x = 2;
         }
 
         public int current() {
@@ -43,32 +37,12 @@ public class M2034_StockPriceFluctuation {
         }
 
         public int maximum() {
-            return list.get(list.size()-1);
+            return prices.lastKey();
         }
 
         public int minimum() {
-            return list.get(0);
+            return prices.firstKey();
         }
-
-
-        private int indexOfPrice(List<Integer> l, int newPrice, int s, int e) {
-            if(s>=e) return s;
-
-            int m = (s+e)/2;
-            if(l.get(m) == newPrice) {
-                return m;
-            } else if(l.get(m) < newPrice) {
-                return indexOfPrice(l, newPrice, m+1, e);
-            } else {
-                // newPrice < l.get(m);
-                if(s==m || l.get(m-1) < newPrice) {
-                    return m;
-                } else {
-                    return indexOfPrice(l, newPrice, s, m-1);
-                }
-            }
-        }
-
     }
 
 }

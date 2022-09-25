@@ -1,5 +1,7 @@
 package com.chuanlong.leetcode.medium;
 
+import java.util.Random;
+
 public class M912_SortAnArray {
     public int[] sortArray(int[] nums) {
         shuffle(nums);

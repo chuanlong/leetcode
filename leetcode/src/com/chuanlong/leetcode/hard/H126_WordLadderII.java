@@ -19,8 +19,8 @@ public class H126_WordLadderII {
                 + obj.findLadders("red", "tax", Arrays.asList("ted","tex","red","tax","tad","den","rex","pee")));
 
 
-        System.out.println("Test4, expect:[], output:"
-                + obj.findLadders("aaaaa", "ggggg", Arrays.asList("aaaaa","caaaa","cbaaa","daaaa","dbaaa",
+        System.out.println("Test4, expect:[[aaaaa,aaaaz,aaawz,aavwz,avvwz,vvvwz,vvvww,wvvww,wwvww,wwwww,ywwww,yywww,yyyww,yyyyw,yyyyy,xyyyy,xxyyy,xxxyy,xxxxy,xxxxx,gxxxx,ggxxx,gggxx,ggggx,ggggg]]"
+                + ", output:" + obj.findLadders("aaaaa", "ggggg", Arrays.asList("aaaaa","caaaa","cbaaa","daaaa","dbaaa",
                 "eaaaa","ebaaa","faaaa","fbaaa","gaaaa","gbaaa","haaaa","hbaaa","iaaaa","ibaaa","jaaaa","jbaaa","kaaaa",
                 "kbaaa","laaaa","lbaaa","maaaa","mbaaa","naaaa","nbaaa","oaaaa","obaaa","paaaa","pbaaa","bbaaa","bbcaa",
                 "bbcba","bbdaa","bbdba","bbeaa","bbeba","bbfaa","bbfba","bbgaa","bbgba","bbhaa","bbhba","bbiaa","bbiba",

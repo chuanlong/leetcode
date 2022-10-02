@@ -1,4 +1,4 @@
-package com.chuanlong.leetcode.hard;
+package com.chuanlong.leetcode.medium;
 
 public class M2414_LengthOfTheLongestAlphabeticalContinuousSubstring {
     public int longestContinuousSubstring(String s) {

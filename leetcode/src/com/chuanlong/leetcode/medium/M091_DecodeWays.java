@@ -1,5 +1,8 @@
 package com.chuanlong.leetcode.medium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class M091_DecodeWays {
 
 	/**
@@ -9,11 +12,45 @@ public class M091_DecodeWays {
 
 		M091_DecodeWays obj = new M091_DecodeWays();
 		
-		System.out.println("12 -> 2, result:" + obj.numDecodings("12"));
-		System.out.println("120 -> 1, result:" + obj.numDecodings("120"));		
-		System.out.println("0 -> 0, result:" + obj.numDecodings("0"));				
-		System.out.println("7541387519572282368613553811323167125532172369624572591562685959575371877973171856836975137559677665 -> 1769472, result:" + obj.numDecodings("7541387519572282368613553811323167125532172369624572591562685959575371877973171856836975137559677665"));	
+		System.out.println("12 -> 2, result:" + obj.numDecodings4("12"));
+		System.out.println("120 -> 1, result:" + obj.numDecodings4("120"));
+		System.out.println("0 -> 0, result:" + obj.numDecodings4("0"));
+		System.out.println("7541387519572282368613553811323167125532172369624572591562685959575371877973171856836975137559677665 -> 1769472, result:" + obj.numDecodings4("7541387519572282368613553811323167125532172369624572591562685959575371877973171856836975137559677665"));
 		
+	}
+
+	public int numDecodings(String s) {
+		char[] tokens = s.toCharArray();
+		int[] digits = new int[tokens.length];
+		for(int i=0; i<tokens.length; i++) {
+			digits[i] = tokens[i]-'0';
+		}
+		Map<Integer, Integer> mem = new HashMap<>();
+		return dp(digits, mem, 0);
+	}
+
+	private int dp(int[] digits, Map<Integer, Integer> mem, int index) {
+		if(mem.containsKey(index)) return mem.get(index);
+		if(index >= digits.length) return 1;
+
+		if(digits[index] == 0) {
+			mem.put(index, 0);
+			return 0;
+		} else if (digits[index] == 1) {
+			int f = dp(digits, mem, index+1);
+			if(index+1<digits.length) f = f + dp(digits, mem, index+2);
+			mem.put(index, f);
+			return f;
+		} else if (digits[index] == 2) {
+			int f = dp(digits, mem, index+1);
+			if((index+1<digits.length) && (digits[index+1]<=6)) f = f + dp(digits, mem, index+2);
+			mem.put(index, f);
+			return f;
+		} else {
+			int f = dp(digits, mem, index+1);
+			mem.put(index, f);
+			return f;
+		}
 	}
 	
     public int numDecodings1(String s) {
@@ -23,10 +60,10 @@ public class M091_DecodeWays {
     	
     	char[] tokens = s.toCharArray();
     	
-    	return numDecodings(tokens, 0, tokens.length-1);
+    	return numDecodings4(tokens, 0, tokens.length-1);
     }
     
-    public int numDecodings(char[] tokens, int start, int end){
+    public int numDecodings4(char[] tokens, int start, int end){
     	
     	if(start >= 0 && start <= end && end < tokens.length){
     		if(start == end){
@@ -40,17 +77,17 @@ public class M091_DecodeWays {
     			// 2 letter or more
     			if((tokens[start] == '1' && tokens[start+1] >= '0' && tokens[start+1] <= '9') 
     					|| (tokens[start] == '2' && tokens[start+1] >= '0' && tokens[start+1] <= '6')){
-    				int num = numDecodings(tokens, start+1, end);
+    				int num = numDecodings4(tokens, start+1, end);
     				
     				if(start+1 == end){
     					// 2 letter
     					num += 1;
     				}else{
-    					num += numDecodings(tokens, start+2, end);
+    					num += numDecodings4(tokens, start+2, end);
     				}
     				return num;
     			}else if(tokens[start] >= '1' && tokens[start] <= '9'){
-    				return numDecodings(tokens, start+1, end);
+    				return numDecodings4(tokens, start+1, end);
     			}else{
     				return 0;
     			}
@@ -61,7 +98,7 @@ public class M091_DecodeWays {
     }
     
     
-    public int numDecodings(String s){
+    public int numDecodings4(String s){
     	if(s == null || s.length() == 0){
     		return 0;
     	}

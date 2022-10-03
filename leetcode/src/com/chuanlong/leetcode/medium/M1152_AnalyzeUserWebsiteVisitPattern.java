@@ -37,7 +37,7 @@ public class M1152_AnalyzeUserWebsiteVisitPattern {
 
     }
 
-    
+
 
     // TLE
     public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {

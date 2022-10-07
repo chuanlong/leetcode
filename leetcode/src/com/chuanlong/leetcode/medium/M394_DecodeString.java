@@ -7,16 +7,54 @@ public class M394_DecodeString {
     public static void main(String[] args) {
 
         M394_DecodeString obj = new M394_DecodeString();
-        String output = obj.decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef");
+        String output = obj.decodeString3("3[z]2[2[y]pq4[2[jk]e1[f]]]ef");
         System.out.println("Output:\n" + output + "\nExpected:\n" + "zzzyypqjkjkefjkjkefjkjkefjkjkefyypqjkjkefjkjkefjkjkefjkjkefef");
 
-        String output2 = obj.decodeString("3[a2[c]]");
+        String output2 = obj.decodeString3("3[a2[c]]");
         System.out.println("Output2:\n" + output2 + "\nExpected:\n" + "accaccacc");
 
     }
 
-
     public String decodeString(String s) {
+        char[] chs = s.toCharArray();
+        String result = "";
+
+        int num=0;
+        for(int i=0; i<chs.length; i++) {
+            char ch = chs[i];
+            if (ch>='a' && ch<='z') {
+                result = result + ch;
+            } else if(ch>='0' && ch<='9') {
+                num = num*10 + (ch-'0');
+            } else if (ch == '[') {
+                int j = indexOf(chs, i);
+                result = result + getDuplicates(decodeString(s.substring(i+1, j)), num);
+                num=0;
+                i=j;
+            }
+        }
+        return result;
+    }
+
+    private int indexOf(char[] chs, int left) {
+        int cnt=0;
+        int index = left;
+        while(index<chs.length) {
+            if(chs[index] == '[') cnt++;
+            else if(chs[index] == ']') cnt--;
+            if(cnt == 0) break;
+            index++;
+        }
+        return index;
+    }
+
+    private String getDuplicates(String token, int num) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<num; i++) sb.append(token);
+        return sb.toString();
+    }
+
+    public String decodeString3(String s) {
         if (!s.contains("[")) {
             return s;
         }
@@ -72,7 +110,7 @@ public class M394_DecodeString {
         }catch (Exception e){
             // error
         }
-        String subString = decodeString(s.substring(start+1, end));
+        String subString = decodeString3(s.substring(start+1, end));
         return repeatString(num, subString);
     }
 

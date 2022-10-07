@@ -1,7 +1,6 @@
 package com.chuanlong.leetcode.hard;
 
 import com.chuanlong.leetcode.bean.ListNode;
-import com.chuanlong.leetcode.test.TestByteDance;
 
 public class H025_ReverseNodesInKGroup {
 
@@ -15,10 +14,85 @@ public class H025_ReverseNodesInKGroup {
 		ListNode node2 = new ListNode(2);
 		node1.next = node2;
 		
-		obj.reverseKGroup(node1, 2);
+		obj.reverseKGroup2(node1, 2);
+	}
+
+	public ListNode reverseKGroup(ListNode head, int k) {
+		if(head == null || head.next == null || k==1) return head;
+
+		ListNode dummy = new ListNode();
+		dummy.next = head;
+
+		ListNode tail = dummy;
+		ListNode l, r;
+		ListNode node = tail;
+		while(node != null) {
+			for(int i=0; node!=null && i<k; i++) node = node.next;
+			if(node == null) break;
+			l = tail.next;
+			r = node;
+
+			// reverse l->r to r->l
+			ListNode x=l, y=l.next;
+			x.next = r.next;
+			while(x != node) {
+				ListNode z = y.next;
+				y.next = x;
+				x = y;
+				y = z;
+			}
+			node = tail.next;
+			tail.next = x;
+			tail = node;
+		}
+
+
+		return dummy.next;
+	}
+
+	public ListNode reverseKGroup3(ListNode head, int k) {
+		if(k == 1) return head;
+		ListNode dummy = new ListNode();
+		dummy.next = head;
+		ListNode tail = dummy;
+		ListNode start=head, end=head;
+		int cnt = 1;
+		while(true) {
+			while(cnt<k && end != null && end.next != null) {
+				end=end.next;
+				cnt++;
+			}
+			if(cnt==k) {
+				//reverse start->end
+				ListNode next = end.next;
+				reverse(start, end);
+				tail.next=end;
+				start.next = next;
+				tail = start;
+				start = next;
+				end = next;
+				cnt = 1;
+			} else {
+				break;
+			}
+		}
+		return dummy.next;
+	}
+
+	private void reverse(ListNode start, ListNode end) {
+		ListNode dummy = new ListNode();
+		dummy.next = start;
+		ListNode node = start.next;
+		while(true) {
+			ListNode tmp = node.next;
+			node.next = dummy.next;
+			dummy.next = node;
+			if(node == end) break;
+			node = tmp;
+		}
 	}
 	
-    public ListNode reverseKGroup(ListNode head, int k) {
+    public ListNode reverseKGroup2(ListNode head, int k) {
     	if(head == null || k == 1){
     		return head;
     	}

@@ -2,10 +2,44 @@ package com.chuanlong.leetcode.medium;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class M735_AsteroidCollision {
 
     public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
+        while(index < asteroids.length) {
+            int aste = asteroids[index++];
+            if(stack.size() == 0) {
+                stack.push(aste);
+                continue;
+            }
+
+            if(aste > 0) {
+                stack.push(aste);
+            } else {
+                while(aste < 0 && stack.size() > 0 && stack.peek() > 0) {
+                    if(stack.peek() > 0-aste) {
+                        aste = 0;
+                    } else if (stack.peek() == 0-aste) {
+                        stack.pop();
+                        aste = 0;
+                    } else {
+                        stack.pop();
+                    }
+                }
+                if(aste != 0) stack.push(aste);
+            }
+        }
+        int[] result = new int[stack.size()];
+        for(int i=stack.size()-1; i>=0; i--) {
+            result[i] = stack.pop();
+        }
+        return result;
+    }
+
+    public int[] asteroidCollision2(int[] asteroids) {
         List<Integer> list = new ArrayList<>();
         for(int i=0; i<asteroids.length; i++) list.add(asteroids[i]);
         List<Integer> result = collision(list);

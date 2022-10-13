@@ -2,13 +2,57 @@ package com.chuanlong.leetcode.medium;
 
 import com.chuanlong.leetcode.bean.TreeNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class M366_FindLeavesOfBinaryTree {
+
     public List<List<Integer>> findLeaves(TreeNode root) {
+        List<TreeNode> leafs = new ArrayList<>();
+        Map<TreeNode, TreeNode> map = new HashMap<>();
+        traverse(null, root, leafs, map);
+        HashSet<TreeNode> visited = new HashSet<>();
+        List<List<Integer>> result = new ArrayList<>();
+        while(leafs.size() > 0) {
+            List<Integer> item = new ArrayList<>();
+            List<TreeNode> newLeafs = new ArrayList<>();
+            for(TreeNode node : leafs) {
+                visited.add(node);
+                item.add(node.val);
+                TreeNode newParent = map.get(node);
+                if(newParent != null
+                        && (newLeafs.size() == 0 || newParent != newLeafs.get(newLeafs.size()-1))
+                        && isLeaf(visited, newParent) && !visited.contains(newParent)) {
+                    newLeafs.add(newParent);
+                }
+            }
+            leafs=newLeafs;
+            result.add(item);
+        }
+
+        return result;
+    }
+
+    private boolean isLeaf(HashSet<TreeNode> visited, TreeNode node) {
+        if(node.left != null && !visited.contains(node.left)) return false;
+        if(node.right != null && !visited.contains(node.right)) return false;
+        return true;
+    }
+
+
+    private void traverse(TreeNode parent, TreeNode node, List<TreeNode> leafs, Map<TreeNode, TreeNode> map) {
+        map.put(node, parent);
+        if(node.left == null && node.right == null) {
+            leafs.add(node);
+            return;
+        }
+        if(node.left != null) traverse(node, node.left, leafs, map);
+        if(node.right != null) traverse(node, node.right, leafs, map);
+    }
+
+
+
+    // Wrong
+    public List<List<Integer>> findLeaves2(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         List<TreeNode> leafs = new ArrayList<>();
         Map<TreeNode, TreeNode> map = new HashMap<>();
@@ -46,16 +90,5 @@ public class M366_FindLeavesOfBinaryTree {
 
         return result;
     }
-
-
-    private void traverse(TreeNode parent, TreeNode node, List<TreeNode> leafs, Map<TreeNode, TreeNode> map) {
-        // assert root is not null
-        map.put(node, parent);
-        if(node.left == null && node.right == null) {
-            leafs.add(node);
-            return;
-        }
-        if(node.left != null) traverse(node, node.left, leafs, map);
-        if(node.right != null) traverse(node, node.right, leafs, map);
-    }
+    
 }

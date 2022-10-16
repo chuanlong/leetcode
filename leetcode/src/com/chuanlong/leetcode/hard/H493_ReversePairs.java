@@ -7,18 +7,35 @@ public class H493_ReversePairs {
     public static void main(String[] args) {
         H493_ReversePairs obj = new H493_ReversePairs();
 
-        System.out.println("Test1, expect:2, output:" + obj.reversePairs(new int[]{1,3,2,3,1}));
-        System.out.println("Test2, expect:3, output:" + obj.reversePairs(new int[]{2,4,3,5,1}));
-        System.out.println("Test3, expect:1, output:" + obj.reversePairs(new int[]{-5,-5}));
-        System.out.println("Test4, expect:9, output:" + obj.reversePairs(new int[]{2147483647,2147483647,-2147483647,-2147483647,-2147483647,2147483647}));
+        System.out.println("Test1, expect:2, output:" + obj.reversePairs2(new int[]{1,3,2,3,1}));
+        System.out.println("Test2, expect:3, output:" + obj.reversePairs2(new int[]{2,4,3,5,1}));
+        System.out.println("Test3, expect:1, output:" + obj.reversePairs2(new int[]{-5,-5}));
+        System.out.println("Test4, expect:9, output:" + obj.reversePairs2(new int[]{2147483647,2147483647,-2147483647,-2147483647,-2147483647,2147483647}));
 
 
 
 //        System.out.println("Test11, expect:0, output:" + obj.indexOfLarge(Arrays.asList(2), 0));
     }
 
+
+
+    private void insert(int num, List<Integer> list) {
+        int s = 0, e = list.size()-1;
+        while(s<e) {
+            int m = s + (e-s)/2;
+            if(list.get(m) == num) {
+                list.add(m, num);
+            } else if (list.get(m) < num) {
+
+            } else {
+                // list.get(m) > num
+            }
+        }
+
+    }
+
     // WA
-    public int reversePairs(int[] nums) {
+    public int reversePairs2(int[] nums) {
         TreeMap<Long, TreeSet<Integer>> map = new TreeMap<>();
 
         for(int i=0; i<nums.length; i++) {

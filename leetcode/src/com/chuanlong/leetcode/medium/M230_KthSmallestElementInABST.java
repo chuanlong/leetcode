@@ -15,11 +15,28 @@ public class M230_KthSmallestElementInABST {
 		root.left = new TreeNode(1);
 		
 		
-		obj.kthSmallest(root, 2);
+		obj.kthSmallest2(root, 2);
+	}
+
+	public int kthSmallest(TreeNode root, int k) {
+		cnt=0;
+		value=0;
+		inorder(root, k);
+		return value;
+	}
+
+	int cnt = 0;
+	int value = 0;
+	private void inorder(TreeNode node, int k) {
+		if(cnt == k) return;
+		if(node == null) return;
+		inorder(node.left, k);
+		cnt++;
+		if(cnt == k) value = node.val;
+		inorder(node.right, k);
 	}
 	
-	
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallest2(TreeNode root, int k) {
     	return kthSmallest1(root, k).kNode.val;
     }
     
